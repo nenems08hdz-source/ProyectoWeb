@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GEUT - Calendario Interactivo</title>
+    <!-- Enlace al archivo de estilos CSS -->
+    <link rel="stylesheet" href="Calendario.css"> 
+    <!-- Librería de Íconos Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- 1. BARRA LATERAL (SIDEBAR) -->
+        <aside class="sidebar">
+            <div class="logo">
+                <i class="fas fa-graduation-cap"></i>
+                <span>GEUT</span>
+            </div>
+            <nav class="nav-menu">
+                <a href="Pantallaprincipal.html" class="nav-item">
+                    <i class="fas fa-home"></i>
+                    <span>Inicio</span>
+                </a>
+                <a href="Anteproyecto.html" class="nav-item">
+                    <i class="fas fa-file-alt"></i>
+                    <span>Anteproyecto</span>
+                </a>
+                <a href="Estadia.html" class="nav-item">
+                    <i class="fas fa-briefcase"></i>
+                    <span>Mi estadía</span>
+                </a>
+                <a href="Comentarios.html" class="nav-item">
+                    <i class="fas fa-comments"></i>
+                    <span>Comentarios</span>
+                </a>
+                <a href="Perfil.html" class="nav-item">
+                    <i class="fas fa-user-circle"></i>
+                    <span>Perfil</span>
+                </a>
+                <!-- Pestaña Activa: Calendario -->
+                <a href="Calendario.html" class="nav-item active">
+                    <i class="fas fa-calendar-alt"></i>
+                    <span>Calendario</span>
+                </a>
+            </nav>
+        </aside>
+
+        <!-- 2. CONTENIDO PRINCIPAL (MAIN CONTENT) -->
+        <main class="main-content">
+            
+            <!-- Tarjeta principal que contendrá el calendario -->
+            <div class="card calendar-card">
+                
+                <!-- Barra superior de la tarjeta -->
+                <div class="calendar-header-title">
+                    <input type="text" value="Calendario" readonly class="input-title-calendar">
+                </div>
+                
+                <!-- Contenido principal: Calendario (izquierda) y Actividades (derecha) -->
+                <div class="calendar-content">
+                    
+                    <!-- Sección de Calendario (Columna Izquierda) -->
+                    <div class="calendar-main">
+                        
+                        <!-- Controles de Navegación del Mes -->
+                        <div class="month-navigation">
+                            <button id="prev-month-btn" class="nav-btn"><i class="fas fa-chevron-left"></i></button>
+                            <div id="month-banner" class="calendar-month-banner">
+                                <!-- El mes se insertará aquí -->
+                            </div>
+                            <button id="next-month-btn" class="nav-btn"><i class="fas fa-chevron-right"></i></button>
+                        </div>
+                        
+                        <!-- Contenedor de la cuadrícula de días -->
+                        <div class="calendar-grid">
+                            <!-- Días de la semana (Encabezados) - 7 columnas -->
+                            <div class="day-name">DOM</div>
+                            <div class="day-name">LUN</div>
+                            <div class="day-name">MAR</div>
+                            <div class="day-name">MIÉ</div>
+                            <div class="day-name">JUE</div>
+                            <div class="day-name">VIE</div>
+                            <div class="day-name">SÁB</div>
+                            <!-- Los días del mes se generarán aquí por JS -->
+                        </div>
+                    </div>
+
+                    <!-- Sección de Actividades (Columna Derecha) -->
+                    <div class="calendar-sidebar">
+                        
+                        <div id="calendar-year" class="calendar-year"></div>
+
+                        <!-- Box de actividades pendientes -->
+                        <div class="activities-box">
+                            <p>Actividades pendientes (<span id="selected-day-text">Hoy</span>)</p>
+                            <span id="activity-count" class="activity-count">0</span>
+                        </div>
+
+                        <!-- Botón Añadir -->
+                        <div class="add-activity-box">
+                            <button id="add-activity-btn"><i class="fas fa-plus"></i> Añadir</button>
+                        </div>
+                        
+                        <!-- Lista de actividades -->
+                        <div id="activity-list" class="activity-list-container">
+                            <p id="no-activities-msg" class="empty-message">No hay actividades para esta fecha.</p>
+                            <!-- Las tarjetas de actividades se generarán aquí por JS -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- MODAL para Añadir Actividad -->
+    <div id="add-activity-modal" class="modal-overlay">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Añadir Nueva Actividad</h3>
+                <button id="close-modal-btn" class="close-btn">&times;</button>
+            </div>
+            <form id="add-activity-form">
+                <label for="activity-name">Nombre de la Actividad</label>
+                <input type="text" id="activity-name" required>
+                
+                <label for="activity-date">Fecha</label>
+                <input type="date" id="activity-date" required>
+                
+                <label for="activity-description">Descripción</label>
+                <textarea id="activity-description" rows="3"></textarea>
+                
+                <div class="modal-actions">
+                    <button type="button" id="cancel-add-btn" class="cancel-btn">Cancelar</button>
+                    <button type="submit" class="save-btn">Guardar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Enlace al archivo de JavaScript -->
+    <script src="Calendario.js"></script>
+</body>
+</html>

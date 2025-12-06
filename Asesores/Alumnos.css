@@ -1,0 +1,254 @@
+:root {
+    --color-dark: #1e2430; 
+    --color-background: #f4f7fa; 
+    --color-sidebar-bg: #1e2430; 
+    --color-sidebar-active: #4a5465; 
+    --color-text-light: #ffffff;
+    --color-text-dark: #333333;
+    --color-card-light: #ffffff;
+    --color-border: #e0e0e0;
+    --color-divider: #e5e7eb; 
+    /* Colores de los botones de acción */
+    --color-anteproyecto-bg: #4b5563; 
+    --color-sancion-bg: #ef4444; 
+    --color-baja-bg: #b91c1c; 
+
+    /* TEXTO */
+    --color-text-dark: #333333;
+    
+    /* STATUS */
+    --color-status-active: #10b981; 
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap');
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Inter', sans-serif; 
+}   
+
+body {
+    background-color: var(--color-main-bg);
+    color: var(--color-text-dark);
+     display: flex; 
+     min-height: 100vh;  
+}
+
+.dashboard-container{
+    display: flex;
+    min-height: 100vh;
+}
+
+.sidebar{
+    width: 250px;
+    background-color: var(--color-sidebar-bg);
+    color: var(--color-text-light);
+    padding: 20px 0;
+    flex-shrink: 0;
+    position: fixed; 
+    height: 100vh;
+}
+
+
+.logo {
+    display: flex;
+    align-items: center;
+    padding: 0 20px 30px;
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+.logo i {
+    font-size: 2em;
+    margin-right: 10px;
+}
+
+.nav-menu {
+    display: flex;
+    flex-direction: column;
+}
+
+.nav-item{
+    display: flex;
+    align-items: center;
+    padding: 16px 20px;
+    color: #b0b8c4; 
+    text-decoration: none;
+    transition: background-color 0.2s;
+    font-size: 0.95em;
+}
+
+.nav-item i {
+    margin-right: 15px;
+    font-size: 1.2em;
+     width: 20px;
+    text-align: center;
+}
+
+.nav-item svg{
+     margin-right: 15px;
+    width: 1.2em; 
+    height: 1.2em; 
+    fill: currentColor;
+}
+
+.nav-item.active-menu {
+    background-color: var(--color-sidebar-active);
+    color: var(--color-text-light);
+    font-weight: 00;
+}
+
+  .nav-item:hover, .nav-item.active {
+         background-color: var(--color-sidebar-active);
+          color: var(--color-text-light);
+          font-weight: 500;
+         } 
+         
+.nav-item.active {
+    border-left: 5px solid #ffffff; 
+    padding-left: 15px; 
+}
+
+.main-content{
+     margin-left: 250px; /* Desplaza el contenido para el sidebar */
+     padding: 2rem;
+     flex-grow: 1;  
+}
+/**/
+       .main-content {
+    /* Ajusta el margen para compensar el sidebar fijo */
+    margin-left: 250px; 
+    padding: 2rem;
+    flex-grow: 1; 
+}
+
+.container {
+    max-width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* TÍTULO CON BORDE AZUL INFERIOR */
+.page-title {
+    border-bottom: 2px solid var(--color-primary-blue); 
+    padding-bottom: 0.5rem;
+    margin-bottom: 2rem;
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: var(--color-text-dark);
+    margin-top: 0;
+}
+
+/* =========================================================
+   TARJETA PRINCIPAL (Contenedor de Lista y Encabezado)
+   ========================================================= */
+.list-card {
+    background-color: var(--color-card-light);
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.06);
+    /* Solo el encabezado va en esta tarjeta */
+    padding: 0 1rem;
+    margin-bottom: 1rem; 
+}
+
+/* =========================================================
+   FILA DE ALUMNO Y ENCABEZADO
+   ========================================================= */
+.alumno-row {
+    display: flex;
+    align-items: center;
+    background-color: var(--color-card-light);
+    padding: 0.75rem 1rem;
+    font-size: 0.9rem;
+    border-bottom: 1px solid #e5e7eb; /* Divisor sutil entre filas */
+}
+
+/* Estilos específicos para la fila de encabezado */
+.header-row {
+    font-weight: 600;
+    color: #6b7280;
+    font-size: 0.85rem;
+    padding-top: 0.75rem; /* Ajuste el padding para el header */
+    padding-bottom: 0.75rem;
+    border-bottom: none; /* Quitamos el borde inferior del encabezado */
+}
+
+/* La fila del header dentro de list-card no debe tener padding horizontal extra */
+.list-card .alumno-row.header-row {
+    padding-left: 0;
+    padding-right: 0;
+}
+
+/* Última fila de la lista: le quitamos el borde inferior */
+.alumno-row:last-of-type {
+    border-bottom: none;
+}
+
+/* Ícono de usuario en gris */
+.alumno-row .col-icon i {
+    color: #9ca3af; 
+    font-size: 1.2em;
+}
+
+/* =========================================================
+   CORRECCIÓN CLAVE: ALINEACIÓN DE COLUMNAS (Flexbox Fix)
+   Fuerza a que las columnas respeten los anchos y se alineen.
+   ========================================================= */
+
+.col-icon { 
+    flex: 0 0 40px; 
+} /* Fijo: No crecer/encoger, ancho 40px */
+
+.col-matricula { 
+    flex: 0 0 120px; 
+    font-weight: 500;
+} /* Fijo: Matrícula */
+
+.col-nombre { 
+    flex: 1 1 auto; /* Crece para ocupar el espacio restante */
+    font-weight: 500; 
+    min-width: 0; /* Permite que el texto largo se trunque/oculte si es necesario */
+} 
+
+.col-estado { 
+    flex: 0 0 100px; /* Fijo: Columna de Estado */
+    text-align: center; 
+} 
+
+.col-acciones { 
+    flex: 0 0 250px; /* Fijo: Espacio para los 3 botones */
+    display: flex; 
+    justify-content: flex-end; 
+    gap: 0.5rem; 
+}
+
+/* Estilo para el estado "Activo" */
+.status-active {
+    color: var(--color-status-active);
+    font-weight: 600;
+}
+
+/* =========================================================
+   BOTONES DE ACCIÓN
+   ========================================================= */
+.action-button {
+    font-size: 0.7rem; 
+    padding: 0.3rem 0.6rem;
+    border-radius: 9999px; 
+    color: var(--color-text-light); 
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    white-space: nowrap;
+    font-weight: 500;
+}
+
+.btn-anteproyecto { background-color: var(--color-anteproyecto-bg); }
+.btn-sancion { background-color: var(--color-sancion-bg); }
+.btn-baja { background-color: var(--color-baja-bg); }
+
+.btn-anteproyecto:hover { background-color: #3e4753; }
+.btn-sancion:hover { background-color: #d13f3f; }
+.btn-baja:hover { background-color: #901717; }

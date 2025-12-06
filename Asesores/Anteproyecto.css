@@ -1,0 +1,440 @@
+:root {
+    --color-dark: #1e2430; /* Color principal del sidebar / filtros activos */
+    --color-background: #f4f7fa; /* Fondo del cuerpo */
+    --color-sidebar-bg: #1e2430; 
+   --color-sidebar-active: #4a5465;
+ /* Fondo del item activo en el sidebar */
+    --color-text-light: #ffffff;
+    --color-text-dark: #333333;
+    --color-card-light: #ffffff;
+    --color-border: #e0e0e0;
+    --color-divider: #e5e7eb; 
+    /* Colores de los botones de acción */
+    --color-view-bg: #fef3c7; 
+    --color-view-text: #b45309; 
+    --color-delete-bg: #dcfce7; 
+    --color-delete-text: #15803d; 
+
+    /* Colores para la vista de detalle */
+    --color-detail-bg: #f9fafb;
+    --color-section-border: #ccc;
+}
+
+/* 2. Configuración de fuente Inter */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap');
+
+/* CORRECCIÓN: Se mueve font-family al body y se usa Inter como fuente principal */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+      
+}  
+
+body {
+    background-color: var(--color-main-bg);
+    color: var(--color-text-dark);
+    font-family: 'Inter', sans-serif;
+    
+}
+
+.dashboard-container {
+    display: flex;
+    min-height: 100vh;
+}
+
+.sidebar {
+    width: 250px;
+    background-color: var(--color-sidebar-bg);
+    color: var(--color-text-light);
+    padding: 20px 0;
+    flex-shrink: 0;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    padding: 0 20px 30px;
+    font-size: 1.2em;
+    
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    padding: 0 20px 30px;
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+.logo i {
+    font-size: 2em;
+    margin-right: 10px;
+}
+
+
+.nav-item {
+    display: flex;
+    align-items: center;
+    padding: 15px 20px;
+    color: #b0b8c4; 
+    text-decoration: none;
+    transition: background-color 0.2s;
+}
+
+.nav-item i {
+    margin-right: 15px;
+    font-size: 1.2em;
+}
+
+/* CORRECCIÓN CLAVE: Regla para iconos SVG para que coincidan con el <i> (1.2em) */
+
+
+  .nav-item:hover, .nav-item.active {
+         background-color: var(--color-sidebar-active);
+          color: var(--color-text-light);
+          font-weight: 500;
+         }
+
+.nav-item:not(.active-menu):hover {
+    background-color: var(--color-sidebar-active);
+    color: var(--color-text-light);
+}
+.nav-item.active {
+    border-left: 5px solid #ffffff; 
+    padding-left: 15px; 
+}
+
+.main-content {
+    flex-grow: 1;
+    padding: 2.5rem; 
+    background-color: var(--color-background);
+    display: flex;
+    flex-direction: column; 
+}
+
+.main-title {
+    color: var(--color-text-dark);
+    font-size: 1.875rem; 
+    font-weight: 700; 
+    margin-bottom: 2rem;
+}
+
+.search-bar-container {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    background-color: var(--color-card-light);
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    border: 1px solid var(--color-border);
+}
+
+.search-bar-container input {
+    flex-grow: 1;
+    border: none;
+    outline: none;
+    padding: 0.5rem;
+    font-size: 1rem;
+    background: transparent;
+    color: var(--color-text-dark);
+}
+
+.search-bar-container i, 
+.search-bar-container svg {
+    /* Mismo tamaño para todos los iconos de búsqueda */
+    font-size: 1.25rem; 
+    width: 1.25rem;
+    height: 1.25rem;
+    color: #9ca3af; 
+    margin-right: 0.5rem;
+    flex-shrink: 0;
+}
+.search-bar-container svg {
+    fill: #9ca3af; 
+}
+
+.anteproyectos-card {
+    background-color: var(--color-card-light);
+    border-radius: 1rem; 
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); 
+    border: 1px solid var(--color-border);
+    padding: 2rem; 
+}
+
+/* Botones de Filtro */
+.filters-container {
+    display: flex;
+    gap: 0.75rem; 
+    margin-bottom: 1.5rem; 
+}
+
+.filter-button {
+    padding: 0.5rem 1rem; 
+    border-radius: 9999px; 
+    font-weight: 500; 
+    transition: all 0.2s ease-in-out;
+    cursor: pointer;
+    font-size: 0.875rem;
+}
+
+.filter-button.active {
+    background-color: var(--color-dark); 
+    color: var(--color-text-light); 
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
+}
+
+.filter-button:not(.active) {
+    background-color: var(--color-card-light); 
+    color: #6b7280; 
+    border: 1px solid var(--color-divider);
+}
+.filter-button:not(.active):hover {
+    background-color: #f9fafb; 
+}
+
+/* Estilos de la Tabla/Grid */
+.anteproyecto-header {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr 3fr 1.5fr; 
+    gap: 1.5rem; 
+    padding-bottom: 0.75rem; 
+    margin-bottom: 0.75rem; 
+    border-bottom: 1px solid var(--color-divider); 
+    color: #6b7280; 
+    font-weight: 600; 
+    font-size: 0.9375rem; 
+    align-items: center; 
+}
+
+.anteproyecto-item {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr 3fr 1.5fr; 
+    gap: 1.5rem; 
+    padding: 1.25rem 0; 
+    border-bottom: 1px solid var(--color-divider); 
+    align-items: center;
+    color: var(--color-text-dark);
+    font-size: 0.95rem; 
+}
+
+.anteproyecto-item:last-child {
+    border-bottom: none;
+}
+
+.item-data:nth-child(1) {
+    display: flex;
+    align-items: center;
+    font-weight: 500;
+}
+
+.item-data i {
+    font-size: 1.25rem; 
+    color: #9ca3af; 
+    margin-right: 0.75rem; 
+    flex-shrink: 0;
+    
+}
+
+.item-data svg {
+    width: 1.25rem; 
+    height: 1.25rem;
+    color: #9ca3af; 
+    margin-right: 0.75rem; 
+    flex-shrink: 0;
+    fill: currentColor; 
+}
+
+.item-actions {
+    display: flex;
+    gap: 0.75rem; 
+    justify-content: flex-end; 
+}
+
+.action-button {
+    padding: 0.5rem 1rem; 
+    border-radius: 0.5rem; 
+    font-weight: 600; 
+    font-size: 0.8125rem; 
+    cursor: pointer;
+    transition: background-color 0.2s;
+    white-space: nowrap; 
+}
+
+.action-button.view-more {
+    background-color: var(--color-view-bg); 
+    color: var(--color-view-text); 
+    border: 1px solid #fcd34d; 
+}
+.action-button.view-more:hover {
+    background-color: #fde68a; 
+}
+
+.action-button.delete {
+    background-color: var(--color-delete-bg); 
+    color: var(--color-delete-text); 
+    border: 1px solid #86efac; 
+}
+.action-button.delete:hover {
+    background-color: #bbf7d0; 
+}
+
+/* 6. Estilos de la Vista de Detalle (Detail View) */
+#detail-container {
+    display: none; /* Oculto por defecto */
+}
+
+.detail-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+.back-button {
+    background-color: #fff;
+    color: var(--color-dark);
+    border: 1px solid var(--color-divider);
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    font-weight: 600;
+    transition: background-color 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+.back-button:hover {
+    background-color: var(--color-background);
+}
+
+.detail-layout {
+    display: grid;
+    grid-template-columns: 2fr 1fr; /* Área de contenido principal y observaciones */
+    gap: 2rem;
+}
+
+.anteproyecto-detail-card {
+    background-color: var(--color-card-light);
+    border-radius: 1rem; 
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1); 
+    padding: 2rem; 
+}
+
+.detail-section h3 {
+    font-size: 1.25rem; 
+    font-weight: 700;
+    color: var(--color-dark);
+    border-bottom: 2px solid var(--color-section-border);
+    padding-bottom: 0.5rem;
+    margin-bottom: 1rem;
+    margin-top: 1.5rem;
+}
+.detail-section h3:first-child {
+    margin-top: 0;
+}
+
+.detail-field {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 1rem;
+    margin-bottom: 1rem;
+    line-height: 1.5;
+}
+
+.detail-label {
+    font-weight: 500;
+    color: #6b7280;
+    font-size: 0.875rem;
+}
+.detail-value {
+    font-weight: 500;
+    color: var(--color-text-dark);
+    grid-column: span 1;
+}
+
+.detail-full-width {
+    grid-column: span 4;
+    margin-bottom: 1rem;
+}
+
+/* Observaciones Sidebar */
+.observations-card {
+    background-color: var(--color-card-light);
+    border-radius: 1rem; 
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1); 
+    padding: 1.5rem; 
+    height: fit-content;
+}
+.observations-card h3 {
+    font-size: 1.125rem;
+    font-weight: 700;
+    color: var(--color-dark);
+    margin-bottom: 1rem;
+}
+
+/* 7. Adaptación Móvil (Responsive) */
+@media (max-width: 1024px) {
+    .sidebar {
+        width: 70px; 
+    }
+    .sidebar .logo span, .sidebar .nav-item span {
+        display: none;
+    }
+    .sidebar .nav-item {
+        justify-content: center;
+        padding: 15px 10px;
+    }
+    .main-content {
+        padding: 1.5rem;
+    }
+    .detail-layout {
+        grid-template-columns: 1fr; /* Apilar en móvil/tablet */
+    }
+    .detail-field {
+        grid-template-columns: 1fr 1fr;
+    }
+    .detail-full-width {
+        grid-column: span 2;
+    }
+}
+
+@media (max-width: 768px) {
+    .anteproyecto-header {
+        display: none; 
+    }
+
+    .anteproyectos-card {
+        padding: 1.5rem;
+    }
+
+    .anteproyecto-item {
+        grid-template-columns: 1fr; 
+        text-align: left;
+        border: 1px solid var(--color-border);
+        border-radius: 0.75rem;
+        margin-bottom: 1rem;
+        padding: 1rem;
+        grid-row-gap: 0.5rem; 
+    }
+
+    .anteproyecto-item .item-data:nth-child(1) span::before { content: 'Matrícula: '; font-weight: 600; color: #6b7280; display: inline; }
+    .anteproyecto-item .item-data:nth-child(2)::before { content: 'Nombre: '; font-weight: 600; color: #6b7280; display: block; margin-bottom: 5px; }
+    .anteproyecto-item .item-data:nth-child(3)::before { content: 'Anteproyecto: '; font-weight: 600; color: #6b7280; display: block; margin-bottom: 5px; }
+
+    .anteproyecto-item .item-actions {
+        justify-content: flex-start; 
+        margin-top: 1rem;
+        border-top: 1px solid var(--color-divider);
+        padding-top: 0.75rem;
+    }
+
+    .detail-field {
+        grid-template-columns: 1fr; /* Apilar campos de detalle en móvil */
+    }
+    .detail-value {
+        grid-column: span 1;
+    }
+    .detail-full-width {
+        grid-column: span 1;
+    }
+}

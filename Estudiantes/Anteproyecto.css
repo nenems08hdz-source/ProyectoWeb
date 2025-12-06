@@ -1,0 +1,259 @@
+/* Variables de Color (Reutilizadas del dashboard anterior) */
+:root {
+    --color-dark: #1e2430; /* Azul oscuro para sidebar */
+    --color-background: #f4f7fa; /* Fondo general claro */
+    --color-sidebar-bg: #1e2430;
+    --color-sidebar-active: #4a5465;
+    --color-text-light: #ffffff;
+    --color-text-dark: #333333;
+    --color-card-light: #ffffff; /* Fondo del formulario */
+    --color-border: #e0e0e0;
+    --color-input-border: #cccccc;
+}
+
+/* Estilos Generales y Reseteo */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: var(--color-background);
+}
+
+/* Contenedor Principal y Sidebar (Igual al Dashboard) */
+.dashboard-container {
+    display: flex;
+    min-height: 100vh;
+}
+ /* ( NAVEGACIÓN) */
+.sidebar {
+    width: 250px;
+    background-color: var(--color-sidebar-bg);
+    color: var(--color-text-light);
+    padding: 20px 0;
+    flex-shrink: 0; 
+}
+/* (LOGOS E ITEMS) */
+.logo {
+    display: flex;
+    align-items: center;
+    padding: 0 20px 30px;
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+.logo i {
+    font-size: 2em;
+    margin-right: 10px;
+}
+
+/* (iTEMS DEL MENU DE NAVEGACION) */
+
+.nav-item {
+    display: flex;
+    align-items: center;
+    padding: 15px 20px;
+    color: #b0b8c4; 
+    text-decoration: none;
+    transition: background-color 0.2s;
+}
+
+.nav-item i {
+    margin-right: 15px;
+    font-size: 1.2em;
+}
+ 
+/* (CMABIO DE COLOR DE ICIONOS) */
+.nav-item:hover, .nav-item.active {
+    background-color: var(--color-sidebar-active);
+    color: var(--color-text-light);
+    font-weight: 500;
+}
+
+.nav-item.active {
+    border-left: 5px solid #ffffff; 
+    padding-left: 15px; 
+}
+
+
+/* --- Estilos del Formulario (Contenido Principal) --- */
+
+.main-content {
+    flex-grow: 1;
+    padding: 30px;
+}
+
+/* Sección principal del formulario (Caja blanca que contiene el título y los campos) */
+.form-section {
+    background-color: var(--color-card-light);
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    padding: 0 20px 20px 20px; /* Padding interno, quitado de arriba para el header */
+    margin-bottom: 30px;
+}
+
+/* Estilo del encabezado/título de cada sección */
+.section-header {
+    padding: 20px 0;
+    border-bottom: 1px solid var(--color-border);
+    margin-bottom: 20px;
+}
+
+.section-header h3 {
+    font-weight: 600;
+    color: var(--color-text-dark);
+    font-size: 1.2em;
+}
+
+/* Contenedor de Fila: Usa Flexbox para alinear horizontalmente */
+.form-row {
+    display: flex;
+    gap: 20px; /* Espacio entre los grupos de campos */
+    margin-bottom: 20px;
+}
+
+/* Contenedor de cada Campo */
+.form-group {
+    display: flex;
+    flex-direction: column;
+    width: 25%; /* Ancho base para campos más pequeños */
+}
+
+/* Modificadores de ancho para replicar el layout de la imagen */
+.form-group-grow {
+    flex-grow: 1; /* Ocupa el espacio disponible para campos grandes */
+    width: auto;
+}
+
+.form-group-medium {
+    width: 40%;
+}
+
+.form-group-small {
+    width: 15%;
+}
+
+
+/* Estilos de la Etiqueta (Label) */
+.form-group label {
+    font-size: 0.9em;
+    color: var(--color-text-dark);
+    margin-bottom: 5px;
+    font-weight: 500;
+}
+
+/* Estilos de los Campos de Entrada (Input) */
+.form-group input {
+    padding: 8px 12px;
+    border: 1px solid var(--color-input-border);
+    border-radius: 4px;
+    font-size: 1em;
+    transition: border-color 0.2s;
+}
+
+.form-group input:focus {
+    border-color: var(--color-dark);
+    outline: none;
+}
+
+/* Separador horizontal entre las dos secciones */
+.separator {
+    height: 10px;
+}
+
+.save-button {
+    background-color: #4CAF50; /* Verde inicial visible (puedes cambiarlo) */
+    color: var(--color-text-light); /* Texto blanco */
+    padding: 10px 25px;
+    border: none;
+    border-radius: 6px;
+    font-size: 1em;
+    font-weight: 600;
+    cursor: pointer;
+    text-transform: uppercase;
+    transition: background-color 0.3s ease, transform 0.1s ease, box-shadow 0.3s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra sutil */
+}
+
+/* Hover */
+.save-button:hover {
+    background-color: var(--color-sidebar-active); /* tono más claro */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+/* Active (clic) */
+.save-button:active {
+    background-color: var(--color-dark); /* tono más oscuro */
+    transform: translateY(1px);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+/* Contenedor del Botón (Si usas el HTML que te di, para alinear al final de la fila) */
+/* Esta clase ayuda a alinear el botón correctamente en la fila flex. */
+.save-button-container {
+    display: flex;
+    align-items: flex-end; /* Alinea el botón con la parte inferior de la fila */
+}
+
+@media (max-width: 900px) {
+    /* En pantallas pequeñas, las filas deben apilarse verticalmente */
+    .form-row {
+        flex-direction: column;
+        gap: 0; /* Quitamos el gap horizontal */
+        margin-bottom: 0;
+    }
+
+    /* Los grupos de campos ocupan el 100% del ancho */
+    .form-group, 
+    .form-group-medium, 
+    .form-group-small {
+        width: 100%;
+        margin-bottom: 20px; /* Separación vertical entre campos */
+    }
+
+    .form-section {
+        padding: 0 20px 20px 20px; /* Menos padding en los lados */
+    }
+
+    .main-content {
+        padding: 20px;
+    }
+}
+select {
+    width: 100%;              /* que ocupe todo el ancho disponible */
+    padding: 10px;            /* espacio interno */
+    border: 1px solid #ccc;   /* borde gris claro */
+    border-radius: 5px;       /* esquinas redondeadas */
+    background-color: #f9f9f9;/* fondo claro */
+    font-size: 14px;          /* tamaño de texto */
+    color: #333;              /* color del texto */
+  }
+textarea {
+  width: 100%;       /* ocupa todo el ancho disponible */
+  min-height: 120px; /* altura mínima */
+  resize: vertical;
+  font-size: 1em; /* permite agrandar hacia abajo */
+}
+.form-stack .form-group {
+  width: 100%;
+  margin-bottom: 20px;
+}
+/* Chrome, Safari, Edge */
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.form-column-half {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.form-column-half .form-group {
+  width: 100%;
+}

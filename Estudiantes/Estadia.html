@@ -1,0 +1,165 @@
+ <!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GEUT - Estadia</title>
+    
+    <link rel="stylesheet" href="Estadia.css"> 
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="dashboard-container">
+        <aside class="sidebar">
+            <div class="logo">
+                <i class="fas fa-graduation-cap"></i>
+                <span>GEUT</span>
+            </div>
+            <nav class="nav-menu">
+                <a href="Pantallaprincipal.html" class="nav-item">
+                    <i class="fas fa-home"></i>
+                    Inicio
+                </a>
+                <a href="Anteproyecto.html" class="nav-item">
+                    <i class="fas fa-file-alt"></i>
+                    Anteproyecto
+                </a>
+                <a href="Estadia.html" class="nav-item">
+                    <i class="fas fa-briefcase"></i>
+                    Mi estadía
+                </a>
+                <a href="Comentarios.html" class="nav-item">
+                    <i class="fas fa-comments"></i>
+                    Comentarios
+                </a>
+                <a href="Perfil.html" class="nav-item">
+                    <i class="fas fa-user-circle"></i>
+                    Perfil
+                </a>
+                <!-- Pestaña Activa: Calendario -->
+                <a href="Calendario.html" class="nav-item">
+                    <i class="fas fa-calendar-alt"></i>
+                    Calendario
+                </a>
+            </nav>
+        </aside>
+
+        <main class="content">
+            <div class="content-area">
+                <h1 class="main-title">Mi estadia </h1>
+
+                <!---Barra de progreso --->
+                <div class="grid-layout">
+                    <div class="card timeline-card">
+                        <h2 class="card-title">Linea tiempo </h2>
+
+                        <div class="progress-container">
+                            <div class="progress-header">
+                                <span>15% Completado</span>
+                            </div>
+                            <div class="progress-bar-bg">
+                                <div class="progress-bar-fill" style="width:  15%;"></div>
+                            </div>
+                        <!--Linea del tiempo --->
+                        <div class="timeline-wrapper">
+                            <div class="timeline-item completed-step-1">
+                                <div class="timeline-item-dot"></div>
+                                <div class="timeline-title-primary">Registro de Anteproyecto</div>
+                                <div class="timeline-title-secundary">Entregado</div>
+                            </div>
+
+                            <div class="timeline-item completed-step-2">
+                                <div class="timeline-item-dot"></div>
+                                <div class="timeline-title-primary">Revision y Aprobacion></div>
+                                <div class="timeline-title-secundary">Entregado y aprovado</div>
+                            </div>
+
+                            <div class="timeline-item completed-step-3">
+                                <div class="timeline-item-dot"></div>
+                                <div class="timeline-title-primary">Desarrollo del Proyecto</div>
+                                <div class="timeline-title-secundary">En curso</div>
+                            </div>
+
+                            <div class="timeline-item completed-step-4">
+                                <div class="timeline-item-dot"></div>
+                                <div class="timeline-title-primary">Entrega del reporte parcial</div>
+                                <div class="timeline-title-secundary">Pendiente</div>
+                            </div>
+
+                            <div class="timeline-item completed-step-5">
+                                <div class="timeline-item-dot"></div>
+                                <div classs="timeline-title-primary">Entrega del final</div>
+                                <div class="timeline-title-secundary">Pendiente</div>
+                            </div>
+
+                            <div class="timeline-item completed-step-6">
+                                <div class="timeline-item-dot"></div>
+                                <div class="timeline-title-primary">Evaluacion final</div>
+                                <div class="timeline-title-secundary">Pendiente</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="main-content">
+            <h1>Progreso de Estadía</h1>
+            
+            <div class="timeline-container">
+                <div class="progress-bar-area">
+                    <div class="progress-header">
+                        <span class="progress-label">Línea de Tiempo</span>
+                        <!-- Aquí se muestra el porcentaje calculado -->
+                        <span id="percentage-display">0% Completado</span>
+                    </div>
+                    <div class="progress-bar-bg">
+                        <div id="progress-bar" class="progress-bar"></div>
+                    </div>
+                </div>
+
+                <div class="timeline" id="timeline-list">
+                    <!-- Los pasos de la línea de tiempo se insertarán aquí por JavaScript -->
+                </div>
+                
+            </div>
+        </div>
+
+                    <!-- Columna 2 (2/5): FICHA DEL PROYECTO -->
+                     <div class="card project-card">
+                        <h2 class="card-title">Ficha del Proyecto</h2>
+                        
+                        <div class="project-name">
+                            Eventia: Plataforma Web para la Gestión Integral de Eventos Institucionales
+                        </div>
+
+                        <div classs="project-details-weapper">
+                            <div class="detail-item">
+                                <strong classs="detail-label">Nombre de la Empresa</strong>
+                                <spn class="detail-value">Logica & Eventos Nexus</spn>
+                            </div>
+
+                            <div class="detail-grid-row">
+                                <div class="detail-item">
+                                    <strong class="detail-label">Asesor Academico</strong>
+                                    <spn class="detail-value-sm">Mtra. Laura Jimenes Cortes</spn>
+                                </div>
+                                <div class="detail-item">
+                                    <strong class="detail-label">Asesor empresarial</strong>
+                                    <spn class="detail-value-sm">Ing. Victor Hugo Ramires Torrez</spn>
+                                </div>
+                            </div>
+
+                                <div class="detail-item">
+                                    <strong class="detail-label">Estado del Proyecto</strong>
+                                    <spn class="detail-value-sm">Aprobado</spn>
+                                 </div>
+                             </div>
+                         </div>
+                      </div>
+                  </main>
+              </div>
+              <!-- Incluir iconos de Font Awesome -->
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <!-- Incluir el JavaScript de la lógica de progreso -->
+    <script src="Estadia.js"></script>
+
+  </body>
+</html>

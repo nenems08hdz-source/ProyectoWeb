@@ -1,0 +1,124 @@
+@import url('https://fonts.googleapis.com/css2?family=Stack+Sans+Text:wght@200..700&display=swap');
+
+*{
+    margin:0;
+    padding:0; 
+    box-sizing: border-box;  
+     font-family: "Stack Sans Text", sans-serif;
+}
+
+body{
+
+width: 100%; 
+height: 100vh; 
+display: flex;
+justify-content: center;
+align-items: center;
+
+background-image: url(Imagenes/Fondo_pantalla2.jpg);
+background-size: cover; 
+background-position: center; 
+background-repeat: no-repeat; 
+background-attachment: fixed;
+
+}
+.container{
+    border: 2px solid rgb(8, 56, 8); /*apartado del garrobo*/
+    width: 900px;
+    height: 500px;
+    display: flex;
+
+    /*sombra efecto*/
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2); /* Sombra más pronunciada */
+    border-radius: 10px;
+    overflow: hidden;
+    border: none;
+    background-color: white;
+}
+
+.container-form{
+  border: none;
+  border-right: 1px solid #ddd;
+  width: 50%;; /*linea del medio*/
+
+}
+.container-form form{
+    box-shadow: none; /*division*/
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.container-form h2{
+    margin-bottom: 20px;
+    font-size: 35px;
+    border: none;
+    background-color: white; /*letra de iniciar sesion*/
+
+}
+.contrainer-input{
+    width: 300px;
+    height: 40px;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    padding: 0 15px;
+    background-color: #EEEEEE;
+}
+.contrainer-input input{
+    border: none;
+    outline: none;
+    width: 100%;
+    height: 100%;
+    background-color: inherit;
+
+}
+.container-from a{
+    width: 300px;
+    text-align: right;
+    margin-top: 5px;
+    margin-bottom: 20px;
+
+    color: black;
+    font-size: 14px;
+   text-decoration:  none;
+   
+}
+.button{
+    width: 170px;
+    height: 45px;
+    font-size: 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 25px;
+    background-color: rgb(33, 165, 33);
+    color: white;
+    font-size: 15px;
+}
+/*animacion*/
+body{
+    background-color: white ;
+}
+model-viewer{
+    width: 50vw;
+    height: 50vh;
+    justify-content: center;
+}
+.image-section-3d {
+    flex: 1; 
+    background-image: url(Imagenes/Fondogarrobo.jpeg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat; /*centrado de imagen de fondo*/
+
+    display: flex;
+    justify-content: center; /* Centrado horizontal */
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}

@@ -1,0 +1,610 @@
+/* Variables de Color (Reutilizadas del dashboard anterior) */
+:root {
+     /* Colores primarios de tu dashboard (azul oscuro/morado) */
+    --color-sidebar: #1e2430; /* Color principal oscuro del dashboard */
+    --color-primary: #373D5E; /* Un tono más claro para hover/botones */
+    --color-text-light: #f4f4f4;
+    --color-text-dark: #333;
+    --color-white: #ffffff;
+    --color-hover-bg: #373D5E; 
+    --color-active-bg: #b6bbd7; 
+    --color-card-bg: #ffffff;
+    --color-card-border: #e0e0e0;
+    /* Colores específicos del calendario */
+    --color-banner-bg: #272C41; /* Banner del mes en color oscuro */
+    --color-banner-text: #ffffff;
+    --color-day-selected: #272C41; /* Día seleccionado en color oscuro */
+    --color-day-hover: #f0f0f0;
+    --color-activity-indicator: #272C41; /* Usamos el color principal para el ícono de actividad */
+    --color-activity-complete: #EF4444; /* Rojo para completado/eliminado */
+}
+
+/* Base */
+body {
+  font-family: 'Arial', sans-serif; /* Se mantiene Arial como fuente simple y legible */
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    color: var(--color-text-dark);
+    height: 100vh;
+    overflow: hidden;
+}
+
+.dashboard-container {
+    display: flex;
+      width: 100%;
+    height: 100vh;
+}
+/* ---------------------------------- */
+/* 1. BARRA LATERAL (SIDEBAR) */
+/* ---------------------------------- */
+
+.sidebar {
+    width: 250px;
+    background-color: var(--color-sidebar);
+    color: var(--color-text-light);
+    padding: 20px 0;
+    flex-shrink: 0;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    padding: 0 20px 30px;
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+.logo i {
+    font-size: 2em;
+    margin-right: 10px;
+}
+.nav-menu {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.nav-item {
+    display: flex;
+    align-items: center;
+    padding: 15px 20px;
+    color: #b0b8c4;
+    text-decoration: none;
+    transition: background-color 0.2s;
+}
+
+.nav-item i {
+    margin-right: 15px;
+    font-size: 1.2em;
+}
+
+.nav-item:hover:not(.active) {
+     background-color: var(--color-hover-bg);
+}
+
+.nav-item.active {
+     background-color: #4a5465; /* COLOR DE LA SELECCIÓN AL MOMENTO DE TOCAR LA PESTAÑA CALENDARIO */
+    color: var(--color-white);
+    font-weight: 600;
+      border-radius: 0;
+}
+
+.nav-item.active {
+    border-left: 5px solid #ffffff;
+    padding-left: 15px;
+}
+
+
+/* ---------------------------------- */
+/* 2. CONTENIDO PRINCIPAL Y CALENDARIO */
+/* ---------------------------------- */
+
+.main-content {
+   flex-grow: 1;
+    padding: 30px; /* Menos padding general */
+    overflow-y: auto;
+}
+.card {
+    background-color: var(--color-card-bg);
+    border-radius: 12px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 1200px;
+    margin: auto;
+    overflow: hidden;
+}
+
+/* HEADER de la tarjeta */
+.calendar-header-title {
+    background-color: var(--color-white);
+    padding: 20px 40px;
+    border-bottom: 1px solid var(--color-card-border);
+}
+
+.input-title-calendar {
+    font-size: 24px;
+    font-weight: 600;
+    border: none;
+    outline: none;
+    width: 100%;
+    color: var(--color-text-dark);
+    margin: 0;
+}
+
+/* CONTENIDO CALENDARIO Y ACTIVIDADES */
+.calendar-content {
+    display: flex;
+}
+
+/* CALENDARIO IZQUIERDA */
+.calendar-main {
+    flex-grow: 1;
+    padding: 20px;
+    border-right: 1px solid var(--color-card-border);
+}
+
+.month-navigation {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.nav-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--color-text-dark);
+    font-size: 20px;
+    padding: 10px;
+    border-radius: 50%;
+    transition: background-color 0.2s;
+}
+
+.nav-btn:hover {
+    background-color: var(--color-day-hover);
+}
+
+.calendar-month-banner {
+    background-color: var(--color-banner-bg);
+    color: var(--color-banner-text);
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+    padding: 12px 25px;
+    border-radius: 8px; /* Bordes ligeramente redondeados */
+    text-transform: uppercase;
+    max-width: 300px; /* Ancho máximo para el banner del mes */
+    flex-grow: 1;
+}
+
+.calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 5px;
+}
+
+.day-name {
+    font-weight: bold;
+    text-align: center;
+    padding: 10px 0;
+    color: var(--color-sidebar);
+    font-size: 14px;
+}
+
+.day-cell {
+     background-color: var(--color-white);
+    border: 1px solid #ccc; /* Borde más claro */
+    border-radius: 6px; /* Bordes más sutiles */
+    height: 70px; /* Altura adecuada para un buen espacio */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.1s, box-shadow 0.1s, border-color 0.1s;
+    position: relative;
+    font-size: 18px; /* Número más grande */
+    user-select: none;
+}
+
+.day-cell:hover:not(.empty-cell):not(.selected) {
+    background-color: var(--color-day-hover);
+    border-color: #aaa;
+}
+
+.day-cell.empty-cell {
+    background-color: transparent;
+    border: none;
+    cursor: default;
+}
+
+.day-cell.selected {
+    background-color: var(--color-day-selected);
+    color: var(--color-white);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    border-color: var(--color-day-selected);
+}
+
+.activity-icon {
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+    font-size: 10px;
+    color: var(--color-activity-indicator);
+}
+
+.day-cell.selected .activity-icon {
+    color: var(--color-white); 
+}
+
+/* CALENDARIO DERECHA (SIDEBAR DE ACTIVIDADES) */
+.calendar-sidebar {
+     width: 350px; /* Más ancho para el panel lateral */
+    padding: 40px;
+    background-color: var(--color-white); /* Color blanco o un gris muy claro para el fondo */
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.calendar-year {
+    font-size: 48px; /* Año muy grande */
+    font-weight: 700;
+    color: var(--color-text-dark);
+    text-align: center; /* Centrar el año */
+    margin-bottom: 15px;
+}
+
+.activities-box {
+   background-color: var(--color-card-bg);
+    padding: 15px 20px;
+    border-radius: 8px;
+    border: 1px solid var(--color-card-border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.activities-box p {
+    margin: 0;
+}
+
+.activity-count {
+    /* Color de contador en blanco para contraste */
+    background-color: var(--color-sidebar); 
+    color: var(--color-white);
+    border-radius: 6px; /* Forma de pastilla o caja */
+    width: auto;
+    min-width: 30px;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    font-size: 16px;
+    font-weight: bold;
+    padding: 0 8px;
+}
+
+.add-activity-box {
+    display: flex;
+    justify-content: center;
+}
+
+#add-activity-btn {
+    background-color: var(--color-sidebar);
+    color: var(--color-white);
+    border: none;
+    padding: 12px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 600;
+    width: 100%;
+   transition: background-color 0.2s, transform 0.1s;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+#add-activity-btn:hover {
+    background-color: var(--color-primary);
+}
+
+#add-activity-btn i {
+    margin-right: 8px;
+}
+
+/* LISTA DE ACTIVIDADES */
+.activity-list-container {
+    overflow-y: auto;
+    /* Un color de fondo muy sutil para el área de actividades */
+    background-color: #f7f7f7; 
+    border-radius: 8px;
+    padding: 10px; 
+    max-height: 450px; /* Aumentar el tamaño máximo de la lista */
+    border: 1px solid var(--color-card-border);
+}
+
+.activity-card {
+    background-color: var(--color-white);
+    padding: 15px;
+    border-radius: 8px;
+    border-left: 5px solid var(--color-sidebar);
+    margin-bottom: 10px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: opacity 0.3s, box-shadow 0.2s;
+}
+
+.activity-card:hover {
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+}
+
+.activity-card-details {
+    flex-grow: 1;
+    cursor: pointer;
+}
+
+.activity-card h4 {
+    margin: 0;
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--color-text-dark);
+}
+
+.activity-card p {
+    margin: 4px 0 0 0;
+    font-size: 14px;
+    color: #666;
+    max-height: 3em;
+    overflow: hidden;
+}
+
+.activity-card.completed {
+     opacity: 0.7;
+    border-left-color: #999;
+}
+
+.activity-card.completed h4 {
+    text-decoration: line-through;
+    color: #999;
+}
+
+.complete-btn {
+    background: none;
+    border: 1px solid var(--color-sidebar);
+    color: var(--color-sidebar);
+    padding: 6px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 600;
+    margin-left: 10px;
+    transition: background-color 0.2s, color 0.2s;
+}
+
+.complete-btn:hover {
+    background-color: var(--color-sidebar);
+    color: var(--color-white);
+}
+
+.activity-card.completed .complete-btn {
+    border-color: #999;
+    color: #999;
+}
+
+.activity-card.completed .complete-btn:hover {
+    background-color: #999;
+    color: var(--color-white);
+}
+
+.empty-message {
+    text-align: center;
+    color: #888;
+    padding: 20px;
+    font-style: italic;
+}
+
+
+/* ---------------------------------- */
+/* MODAL */
+/* ---------------------------------- */
+
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: none; /* Se muestra con JS */
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal-content {
+    background-color: var(--color-white);
+    padding: 30px;
+    border-radius: 12px;
+    width: 90%;
+    max-width: 450px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    transform: scale(0.95);
+    transition: transform 0.3s, opacity 0.3s;
+}
+
+.modal-overlay.open .modal-content {
+    transform: scale(1);
+    opacity: 1;
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.modal-header h3 {
+   margin: 0;
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--color-sidebar);
+}
+
+.close-btn {
+    background: none;
+    border: none;
+    font-size: 30px;
+    cursor: pointer;
+    color: #999;
+}
+
+.close-btn:hover {
+    color: #333;
+}
+
+.modal-content label {
+    display: block;
+    margin-top: 10px;
+    margin-bottom: 5px;
+    font-weight: 600;
+    font-size: 14px;
+    color: var(--color-sidebar);
+}
+
+.modal-content input[type="text"],
+.modal-content input[type="date"],
+.modal-content textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    box-sizing: border-box;
+    margin-bottom: 10px;
+    font-size: 16px;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.modal-content input:focus,
+.modal-content textarea:focus {
+    border-color: var(--color-sidebar);
+    box-shadow: 0 0 0 2px rgba(39, 44, 65, 0.2);
+    outline: none;
+}
+
+.modal-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 25px;
+}
+
+.cancel-btn, .save-btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.cancel-btn {
+    background-color: #e0e0e0;
+    color: var(--color-text-dark);
+}
+
+.cancel-btn:hover {
+    background-color: #ccc;
+}
+
+.save-btn {
+    background-color: var(--color-sidebar);
+    color: var(--color-white);
+}
+
+.save-btn:hover {
+    background-color: var(--color-primary);
+}
+
+
+/* ---------------------------------- */
+/* RESPONSIVE */
+/* ---------------------------------- */
+
+@media (max-width: 1000px) {
+    .sidebar {
+        width: 70px;
+        padding: 10px 0;
+    }
+
+    .logo span {
+        display: none;
+    }
+
+    .logo i {
+        margin-right: 0;
+    }
+
+    .nav-item {
+        padding: 15px 10px;
+        justify-content: center;
+    }
+
+    .nav-item span {
+        display: none;
+    }
+
+    .nav-item i {
+        margin-right: 0;
+    }
+    
+    .main-content {
+        padding: 20px 10px;
+    }
+
+    .calendar-content {
+        flex-direction: column;
+    }
+
+    .calendar-main {
+        border-right: none;
+        border-bottom: 1px solid var(--color-card-border);
+        padding: 20px;
+    }
+
+    .calendar-sidebar {
+        width: 100%;
+        padding: 20px;
+    }
+
+    .month-navigation {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .calendar-month-banner {
+        font-size: 20px;
+        padding: 10px 20px;
+    }
+    
+    .day-name {
+        font-size: 12px;
+    }
+
+    .day-cell {
+        height: 50px;
+        font-size: 16px;
+    }
+
+    .calendar-year {
+        font-size: 40px;
+    }
+}

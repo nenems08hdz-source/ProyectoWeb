@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestión de Anteproyectos - GEUT</title>
+    <!-- Carga Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Carga Font Awesome para los iconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- Enlace al archivo de estilos externo -->
+    <link rel="stylesheet" href="Anteproyecto.css">
+    <link rel="stylesheet" href="VerAnteproyecto.css">
+
+</head>
+<body>
+    <!-- Contenedor Principal (Flexbox para sidebar y contenido) -->
+    <div class="dashboard-container">
+        
+        <!-- BARRA LATERAL (SIDEBAR) -->
+        <aside class="sidebar">
+            <div class="logo">
+                <i class="fas fa-graduation-cap"></i>
+                <span>GEUT</span>
+            </div>
+            <nav class="nav-menu">
+                <a href="PantallaInicio.html" class="nav-item">
+                    <i class="fas fa-home"></i>
+                    <span>Inicio</span>
+                </a>
+                <a href="Anteproyecto.html" class="nav-item active">
+                    <i class="fas fa-file-alt"></i>
+                    <span>Anteproyecto</span>
+                </a>
+                <a href="Alumnos.html" class="nav-item">
+                    <i class="fa-solid fa-user-group"></i>
+                    <span>Alumnos</span>
+                </a>
+                <a href="Comentario.html" class="nav-item">
+                    <i class="fas fa-comments"></i>
+                    <span>Comentarios</span>
+                </a>
+                <a href="Perfil.html" class="nav-item">
+                    <i class="fas fa-user-circle"></i>
+                    <span>Perfil</span>
+                </a>
+                <a href="Calendario.html" class="nav-item">
+                    <i class="fas fa-calendar-alt"></i>
+                    <span>Calendario</span>
+                </a>
+            </nav>
+        </aside>
+        
+            <main class="main-content">
+      <div class="anteproyecto-layout">
+        
+        <section class="document-view">
+  <div class="anteproyecto-header">
+    <h2>Datos del anteproyecto</h2>
+  </div>
+
+  <!-- Datos del estudiante -->
+  <div class="card">
+    <h3>Datos del estudiante</h3>
+    <div class="two-column">
+      <!-- Ahora los datos que estaban a la derecha van a la izquierda -->
+      <div class="column-left">
+        <p><strong>Nombre completo:</strong> Pablo Lopez Chable</p>
+        <p><strong>División académica:</strong> Tecnologías de la Información y Comunicación</p>
+        <p><strong>Correo electrónico:</strong> PabloLopezChable@gmail.com</p>
+        <p><strong>Número telefónico:</strong> 9934743567</p>
+      </div>
+      <!-- Y los que estaban a la izquierda van a la derecha -->
+      <div class="column-right">
+        <p><strong>Matrícula:</strong> 422410815</p>
+        <p><strong>Grupo:</strong> B</p>
+        <p><strong>Carrera:</strong> TSU en Tecnologías de la Información Área Desarrollo de Software Multiplataforma</p>
+        <p><strong>Fecha registro:</strong> 07-09-2025</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Datos de la empresa -->
+  <div class="card">
+    <h3>Datos de la empresa receptora</h3>
+    <div class="two-column">
+      <!-- Invertimos igual -->
+      <div class="column-left">
+        <p><strong>Nombre de la empresa:</strong> Logística & Eventos Nexus</p>
+        <p><strong>Dirección de la empresa:</strong> Calle 18 de Marzo #245, Col. Centro, Villahermosa, Tabasco, C.P. 86000</p>
+        <p><strong>Correo electrónico:</strong> Empresa01@gmail.com</p>
+      </div>
+      <div class="column-right">
+        <p><strong>Nombre del asesor empresarial:</strong> Ing. Víctor Hugo Ramírez Torres</p>
+        <p><strong>Número:</strong> 9923456768</p>
+        <p><strong>Área que desempeña:</strong> Desarrollo organizacional</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Anteproyecto -->
+  <div class="card">
+    <h3>Anteproyecto</h3>
+    <p><strong>Título del proyecto:</strong> Sistema Web para la Coordinación de Eventos Institucionales y Registro de Participantes</p>
+    <p><strong>Objetivo general:</strong> Desarrollar un sistema web que permita gestionar eventos institucionales...</p>
+    <p><strong>Justificación:</strong> La gestión de eventos institucionales implica procesos que generan retrasos...</p>
+    <p><strong>Actividades propuestas:</strong> Registro digital de asistentes, asignación de recursos, control de proveedores, generación de reportes.</p>
+    <p><strong>Metodología:</strong> Aplicación de herramientas digitales adaptadas a las necesidades corporativas.</p>
+  </div>
+</section>
+
+        <aside class="comment-panel">
+          <h3>Comentarios del asesor</h3>
+          <form class="comment-form">
+            <textarea placeholder="Escribe tu comentario aquí..."></textarea>
+            <button type="submit">Agregar comentario</button>
+          </form>
+        </aside>
+      </div>
+    </main>
+  </div>
+</body>
+</html>
+

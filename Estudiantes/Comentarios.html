@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GEUT - Comentarios</title>
+   
+    <link rel="stylesheet" href="Cometarios.css"> 
+   
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="dashboard-container">
+       
+        <aside class="sidebar">
+            <div class="logo">
+                <i class="fas fa-graduation-cap"></i>
+                <span>GEUT</span>
+            </div>
+            <nav class="nav-menu">
+                <a href="Pantallaprincipal.html" class="nav-item">
+                    <i class="fas fa-home"></i>
+                    Inicio
+                </a>
+                <a href="Anteproyecto.html" class="nav-item">
+                    <i class="fas fa-file-alt"></i>
+                    Anteproyecto
+                </a>
+                  <a href="Estadia.html" class="nav-item">
+                    <i class="fas fa-briefcase"></i>
+                    Mi estadía
+                </a>
+            
+                <a href="Comentarios.html" class="nav-item active">
+                    <i class="fas fa-comments"></i>
+                    Comentarios
+                </a>
+                <a href="Perfil.html" class="nav-item">
+                    <i class="fas fa-user-circle"></i>
+                    Perfil
+                </a>
+                <a href="Calendario.html" class="nav-item">
+                    <i class="fas fa-calendar-alt"></i>
+                    Calendario
+                </a>
+            </nav>
+        </aside>
+
+        
+        <main class="main-content">
+            <header class="page-header">
+                
+            </header>
+
+    
+            <div class="comments-grid">
+          
+                <input type="text" value="Comentarios" readonly class="input-title input-half-width">
+                <input type="text" placeholder="" class="input-half-width">
+
+                
+                <input type="text" value="Asesores" readonly class="input-title input-half-width">
+                <input type="text" placeholder="" class="input-half-width">
+                
+           
+                <div class="card card-advisor">
+                    <div class="advisor-item-large">
+                        <i class="fas fa-user-circle"></i>
+                        Asesor académico
+                    </div>
+                </div>
+                <div class="card card-response dark-card">
+                    <p>Aún no has agregado una respuesta</p>
+                    <button class="btn-responder">Responder</button>
+                </div>
+                <div class="card card-advisor">
+                    <div class="advisor-item-large">
+                        <i class="fas fa-user-circle"></i>
+                        Asesor empresarial
+                    </div>
+                </div>
+                <div class="card card-response dark-card">
+                    <p>Aún no has agregado una respuesta</p>
+                    <button class="btn-responder">Responder</button>
+                </div>
+            </div>
+            <!--STRUCTURA DEL MODAL DE RESPUESTA (Inicialmente Oculto) -->
+                <div id="responseModal" class="modal-overlay">
+        <div class="modal-content">
+            <span id="closeModal" class="close-button">&times;</span>
+            <div class="modal-header">
+                <!-- El título se actualizará con JS para decir: Responder a Asesor X -->
+                <h3 class="modal-title">Responder a Asesor <span id="advisorName">...</span></h3>
+            </div>
+            <div class="modal-body">
+                <label for="responseArea">Escribe tu respuesta:</label>
+                <textarea id="responseArea" rows="6" placeholder="Escribe tu respuesta al comentario del asesor aquí..."></textarea>
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="sendResponse" class="btn-primary">Enviar Respuesta</button>
+                <button type="button" id="cancelResponse" class="btn-secondary">Cancelar</button>
+            </div>
+        </div>
+    </div>
+        </main>
+    </div>
+      <script src="Comentario.js"></script> 
+</body>
+</html>

@@ -1,0 +1,115 @@
+.anteproyecto-layout {
+  display: flex;
+  gap: 15px;
+}
+
+.document-view {
+  flex: 2;
+}
+
+/* --- Caja de comentarios (se mantiene igual) --- */
+.comment-panel {
+  flex: 1;
+  background-color: #ffffff;
+  border-radius: 8px; /* corregí el valor que estaba vacío */
+  padding: 20px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.comment-panel h3 {
+  margin-bottom: 15px;
+  font-size: 1.2em;
+  color: #1e2430;
+}
+
+.comment-form textarea {
+  width: 100%;
+  min-height: 120px;
+  resize: vertical;
+  font-size: 1em;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  margin-bottom: 15px;
+}
+
+.comment-form button {
+  background-color: #262b3f;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.comment-form button:hover {
+  background-color: #45a049;
+}
+
+/* --- Tarjetas generales --- */
+.card {
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 3px 4px rgba(0,0,0,0.05);
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+}
+
+.card h3 {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.card p {
+  margin-bottom: 8px;
+  font-size: 0.95em;
+}
+
+/* --- Encabezado del anteproyecto --- */
+.anteproyecto-header {
+  background-color: #293142;  /* Fondo azul oscuro para destacar el encabezado */
+  color: white;               /* Texto blanco sobre fondo oscuro */
+  padding: 10px 25px;         /* Espaciado interno arriba/abajo y lados */
+  border-radius: 8px;         /* Bordes redondeados */
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Sombra sutil para profundidad */
+  margin-bottom: 20px;
+}
+
+.anteproyecto-header h2 {
+  font-size: 1.3em;
+  font-weight: 600;
+}
+
+/* --- Layout en dos columnas para estudiante y empresa --- */
+.two-column {
+  display: flex;       /* Coloca los dos bloques lado a lado */
+  gap: 40px;           /* Espacio entre columnas */
+  flex-wrap: wrap;     /* Permite que se acomode en pantallas pequeñas */
+}
+
+.column-left,
+.column-right {
+  flex: 1;             /* Cada columna ocupa la mitad */
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.column-left p,
+.column-right p {
+  font-size: 0.95em;
+  color: #333;
+}
+.card h3 {
+  margin-bottom: 15px;     /* espacio debajo del título */
+  font-weight: 600;        /* grosor del texto */
+  color: #1e2430;          /* color del encabezado */
+  font-size: 1.2em;        /* tamaño del texto (ajústalo a tu gusto) */
+}

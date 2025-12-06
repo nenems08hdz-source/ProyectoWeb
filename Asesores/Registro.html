@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Iniciar Sesión - UTTAB</title>
+    <!-- Incluye Tailwind CSS para utilidades de diseño -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Incluye Font Awesome para el icono del birrete y del ojo -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="Registro.css"> 
+</head>
+  <body class="full-screen-center">
+
+    <!-- Encabezado superior (Gestión de estadías UTTAB + Icono) -->
+    <header class="absolute top-0 right-0 p-6 flex items-center text-xl text-white font-semibold">
+        <span class="mr-2">Gestión de estadías UTTAB</span>
+        <i class="fas fa-graduation-cap text-3xl text-white"></i>
+    </header>
+
+    <!-- Contenedor del Formulario Principal -->
+    <div class="w-full max-w-sm bg-primary-dark p-8 md:p-10 rounded-xl shadow-2xl">
+        
+        <h2 id="form-title" class="text-text-light text-2xl font-bold mb-8 text-center">
+            Iniciar sesión
+        </h2>
+
+        <!-- Contenedor de mensajes (para errores/éxito) -->
+        <div id="message-container" class="text-white text-center hidden transition duration-500"></div>
+
+        <!-- 1. VISTA DE INICIO DE SESIÓN (LOGIN) -->
+        <div id="login-view">
+            <form onsubmit="event.preventDefault(); console.log('Intento de Login');">
+                
+                <!-- CAMPO MATRÍCULA -->
+                <div class="mb-5">
+                    <label for="matricula" class="block text-sm font-medium text-text-muted mb-1">
+                        Matrícula escolar
+                    </label>
+                    <input 
+                        type="text" 
+                        id="matricula" 
+                        placeholder="Escriba su matrícula (Ej: 422410523)"
+                        class="w-full p-3 bg-secondary-dark text-text-light border border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-accent-blue transition duration-200"
+                        required
+                    >
+                </div>
+
+                <!-- Campo Contraseña con Ojo -->
+                <div class="mb-6 relative">
+                    <label for="password" class="block text-sm font-medium text-text-muted mb-1">
+                        Contraseña
+                    </label>
+                    <div class="relative">
+                        <input 
+                            type="password" 
+                            id="password" 
+                            class="w-full p-3 pr-10 bg-secondary-dark text-text-light border border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-accent-blue transition duration-200"
+                            required
+                        >
+                        <!-- Icono de Ojo Táchado (simulación de toggle) -->
+                        <span class="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 cursor-pointer">
+                            <i class="fas fa-eye-slash"></i>
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Botón Iniciar Sesión -->
+                <button 
+                    type="submit" 
+                    class="w-full py-3 mb-4 bg-accent-blue text-white font-semibold rounded-lg hover:bg-opacity-90 transition duration-200 shadow-md shadow-accent-blue/30"
+                >
+                    Iniciar sesión
+                </button>
+
+                <!-- Enlace ¿Olvidaste tu contraseña? (¡Activa la vista de Reset!) -->
+                <div class="text-center">
+                    <a href="#" 
+                       onclick="event.preventDefault(); switchView('reset-view');"
+                       class="text-sm text-text-muted hover:text-accent-blue transition duration-200"
+                    >
+                        ¿Olvidaste tu contraseña?
+                    </a>
+                </div>
+            </form>
+        </div>
+
+        <!-- 2. VISTA DE RESTABLECIMIENTO DE CONTRASEÑA (RESET) -->
+        <div id="reset-view" class="hidden">
+            <p class="text-text-muted text-center mb-6 text-sm">
+                Ingresa y confirma tu nueva contraseña.
+            </p>
+            <form id="reset-form" onsubmit="handlePasswordReset(event)">
+                
+                <!-- CAMPO NUEVA CONTRASEÑA -->
+                <div class="mb-5">
+                    <label for="new-password" class="block text-sm font-medium text-text-muted mb-1">
+                        Nueva Contraseña
+                    </label>
+                    <input 
+                        type="password" 
+                        id="new-password" 
+                        placeholder="Ingresa la nueva contraseña"
+                        class="w-full p-3 bg-secondary-dark text-text-light border border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-accent-blue transition duration-200"
+                        required
+                        minlength="8"
+                    >
+                </div>
+
+                <!-- CAMPO CONFIRMAR CONTRASEÑA -->
+                <div class="mb-6">
+                    <label for="confirm-password" class="block text-sm font-medium text-text-muted mb-1">
+                        Confirmar Contraseña
+                    </label>
+                    <input 
+                        type="password" 
+                        id="confirm-password" 
+                        placeholder="Confirma la nueva contraseña"
+                        class="w-full p-3 bg-secondary-dark text-text-light border border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-accent-blue transition duration-200"
+                        required
+                        minlength="8"
+                    >
+                </div>
+
+                <!-- Botón Restablecer Contraseña -->
+                <button 
+                    type="submit" 
+                    class="w-full py-3 mb-4 bg-accent-blue text-white font-semibold rounded-lg hover:bg-opacity-90 transition duration-200 shadow-md shadow-accent-blue/30"
+                >
+                    Guardar Nueva Contraseña
+                </button>
+
+                <!-- Enlace Volver al Inicio de Sesión -->
+                <div class="text-center">
+                    <a href="#" 
+                       onclick="event.preventDefault(); switchView('login-view');"
+                       class="text-sm text-text-muted hover:text-accent-blue transition duration-200"
+                    >
+                        <i class="fas fa-arrow-left mr-1"></i> Volver al inicio de sesión
+                    </a>
+                </div>
+            </form>
+        </div>
+    </div>
+    <script src="Registro.js"></script>
+
+</body>
+</html>

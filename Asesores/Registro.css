@@ -1,0 +1,16 @@
+
+        body {
+            /* Establece el fondo gris oscuro de la imagen */
+            background-color: #333333;
+            font-family: 'Inter', sans-serif;
+        }
+        /* Contenedor principal centrado */
+        .full-screen-center {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+   
+   

@@ -1,0 +1,330 @@
+/* --- Variables de Color --- */
+:root {
+    --color-dark: #1e2430; /* Azul oscuro para sidebar y tarjetas */
+    --color-background: #f4f7fa; /* Fondo general claro */
+    --color-sidebar-bg: #1e2430;
+    --color-sidebar-active: #4a5465;
+    --color-text-light: #ffffff;
+    --color-text-dark: #333333;
+    --color-card-light: #ffffff; 
+    --color-border: #e0e0e0;
+}
+
+/* --- Estilos Generales y Reseteo --- */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: var(--color-background);
+}
+
+/* --- Layout Principal --- */
+.dashboard-container {
+    display: flex;
+    min-height: 100vh;
+}
+
+/* --- Sidebar (Barra Lateral) --- */
+.sidebar {
+    width: 250px;
+    background-color: var(--color-sidebar-bg);
+    color: var(--color-text-light);
+    padding: 20px 0;
+    flex-shrink: 0; 
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    padding: 0 20px 30px;
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+.logo i {
+    font-size: 2em;
+    margin-right: 10px;
+}
+
+.nav-menu {
+    display: flex;
+    flex-direction: column;
+}
+
+.nav-item {
+    display: flex;
+    align-items: center;
+    padding: 15px 20px;
+    color: #b0b8c4; 
+    text-decoration: none;
+    transition: background-color 0.2s;
+}
+
+.nav-item i {
+    margin-right: 15px;
+    font-size: 1.2em;
+}
+
+.nav-item:hover, .nav-item.active {
+    background-color: var(--color-sidebar-active);
+    color: var(--color-text-light);
+    font-weight: 500;
+}
+
+.nav-item.active {
+    border-left: 5px solid #ffffff; 
+    padding-left: 15px; 
+}
+
+/* --- Contenido Principal --- */
+.main-content {
+    flex-grow: 1;
+    padding: 30px;
+}
+
+/* Estilo Base de Tarjeta */
+.card {
+    background-color: var(--color-card-light);
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+
+/* --- Estilos Específicos de la Interfaz de COMENTARIOS --- */
+
+.comments-grid {
+    display: grid;
+    /* Dos columnas iguales */
+    grid-template-columns: 1fr 1fr; 
+    /* Cuatro filas: Comentarios, Asesores, Académico, Empresarial */
+    grid-template-rows: repeat(4, auto); 
+    gap: 20px;
+    max-width: 1200px; /* Limitar el ancho para que no se extienda demasiado */
+}
+
+/* Estilos de los inputs superiores (Comentarios, Asesores y el input vacío) */
+.input-title {
+    background-color: var(--color-card-light);
+    color: var(--color-text-dark);
+    font-weight: 600;
+    font-size: 1.1em;
+    cursor: default;
+    border: 1px solid var(--color-border);
+    border-radius: 8px; /* Aplicamos el mismo redondeado de las tarjetas */
+    padding: 12px 15px;
+    height: 50px;
+}
+
+/* Alineación de inputs en dos columnas */
+.input-half-width {
+    width: 100%; /* Ocupa la columna completa */
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+    padding: 12px 15px;
+    height: 50px;
+}
+
+/* Tarjeta de Asesor (Cajas blancas de Asesor académico/empresarial) */
+.card-advisor {
+    /* Quitamos el padding normal de la tarjeta y lo ponemos en el ítem interno */
+    padding: 0; 
+}
+
+/* Ítem del Asesor con ícono */
+.advisor-item-large {
+    display: flex;
+    align-items: center;
+    padding: 20px; /* Padding interno para simular la separación */
+    color: var(--color-text-dark);
+    font-weight: 500;
+    font-size: 1.1em;
+}
+
+.advisor-item-large i {
+    margin-right: 15px;
+    font-size: 1.5em; 
+    color: var(--color-dark);
+}
+
+/* Tarjetas de Respuesta (Cajas oscuras derechas) */
+.card-response {
+    min-height: 150px; 
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.dark-card {
+    background-color: var(--color-dark);
+    color: var(--color-text-light);
+    border-radius: 8px;
+}
+
+.dark-card p {
+    font-size: 1.1em;
+    margin-bottom: 20px;
+}
+
+.btn-responder {
+    background-color: var(--color-card-light);
+    color: var(--color-dark);
+    padding: 10px 20px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 0.9em;
+}
+
+/* Posicionamiento de los elementos en el Grid */
+
+/* Fila 1 (Comentarios) */
+.comments-grid > *:nth-child(1) { grid-area: 1 / 1 / 2 / 2; }
+.comments-grid > *:nth-child(2) { grid-area: 1 / 2 / 2 / 3; }
+
+/* Fila 2 (Asesores) */
+.comments-grid > *:nth-child(3) { grid-area: 2 / 1 / 3 / 2; }
+.comments-grid > *:nth-child(4) { grid-area: 2 / 2 / 3 / 3; }
+
+/* Fila 3 (Asesor Académico / Respuesta 1) */
+.comments-grid > *:nth-child(5) { grid-area: 3 / 1 / 4 / 2; }
+.comments-grid > *:nth-child(6) { grid-area: 3 / 2 / 4 / 3; }
+
+/* Fila 4 (Asesor Empresarial / Respuesta 2) */
+.comments-grid > *:nth-child(7) { grid-area: 4 / 1 / 5 / 2; }
+.comments-grid > *:nth-child(8) { grid-area: 4 / 2 / 5 / 3; }
+
+.modal-overlay {
+    display: none; /* INICIALMENTE OCULTO */
+    position: fixed; 
+    z-index: 1000; 
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6); 
+    backdrop-filter: blur(2px);
+    transition: opacity 0.3s; 
+}
+
+/* Contenido de la ventana modal */
+.modal-content {
+    background-color: var(--color-card-light);
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+    width: 90%; 
+    max-width: 550px; 
+    position: relative;
+    animation: fadeInScale 0.3s ease-out; 
+}
+
+.modal-overlay.is-visible {
+    display: flex; /* Muestra el fondo */
+    align-items: center; /* Centra el modal verticalmente */
+    justify-content: center; /* Centra el modal horizontalmente */
+}
+
+/* Animación de aparición */
+@keyframes fadeInScale {
+    from { opacity: 0; transform: scale(0.9); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+/* Encabezado del modal */
+.modal-header {
+    border-bottom: 1px solid var(--color-border);
+    padding-bottom: 15px;
+    margin-bottom: 15px;
+}
+
+.modal-title {
+    color: var(--color-text-dark);
+    font-size: 1.4em;
+    font-weight: 600;
+}
+
+/* Botón de cerrar (la 'x') */
+.close-button {
+    color: var(--color-input-border);
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    transition: color 0.2s;
+}
+
+.close-button:hover {
+    color: var(--color-dark);
+}
+
+/* Cuerpo del modal (Textarea) */
+.modal-body label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+    color: var(--color-text-dark);
+}
+
+#responseArea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid var(--color-input-border);
+    border-radius: 6px;
+    resize: vertical; 
+    font-size: 1em;
+    min-height: 150px;
+    box-sizing: border-box;
+}
+
+/* Pie de página del modal (para los botones) */
+.modal-footer {
+    padding-top: 20px;
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+/* Estilos de botones dentro del modal */
+.btn-primary {
+    /* Igual al btn-responder, pero más genérico */
+    background-color: var(--color-primary);
+    color: var(--color-text-light);
+    border: none;
+    border-radius: 4px;
+    padding: 10px 20px;
+    font-size: 1em;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.btn-primary:hover {
+    background-color: var(--color-sidebar-active);
+}
+
+.btn-secondary {
+    /* Botón Cancelar */
+    background-color: var(--color-border);
+    color: var(--color-text-dark);
+    border: none;
+    border-radius: 4px;
+    padding: 10px 20px;
+    font-size: 1em;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    margin-left: 10px;
+}
+
+.btn-secondary:hover {
+    background-color: #d0d0d0;
+}
+
