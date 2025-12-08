@@ -120,6 +120,55 @@ class NotificacionesHandler implements MessageComponentInterface {
     }
     
     /**
+     * Enviar notificaciones pendientes a un usuario cuando se autentica
+     */
+    public function enviarNotificacionesPendientes($usuario_id, ConnectionInterface $connection) {
+        global $conn;
+        
+        try {
+            // Obtener notificaciones no leídas del usuario
+            $sql = "SELECT n.*, 
+                    TIMESTAMPDIFF(SECOND, n.FECHA_CREACION, NOW()) as segundos_desde_creacion
+                    FROM notificaciones n
+                    WHERE n.CVE_USUARIOS = :usuario_id
+                    AND n.LEIDA = 0
+                    ORDER BY n.FECHA_CREACION DESC
+                    LIMIT 20";
+            
+            $stmt = $conn->prepare($sql);
+            $stmt->bindValue(':usuario_id', $usuario_id, PDO::PARAM_INT);
+            $stmt->execute();
+            $notificaciones = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            
+            foreach ($notificaciones as $notif) {
+                // Formatear tiempo relativo
+                $segundos = $notif['segundos_desde_creacion'];
+                if ($segundos < 60) {
+                    $notif['TIEMPO_RELATIVO'] = "Hace {$segundos} segundo(s)";
+                } elseif ($segundos < 3600) {
+                    $minutos = floor($segundos / 60);
+                    $notif['TIEMPO_RELATIVO'] = "Hace {$minutos} minuto(s)";
+                } else {
+                    $horas = floor($segundos / 3600);
+                    $notif['TIEMPO_RELATIVO'] = "Hace {$horas} hora(s)";
+                }
+                
+                // Enviar al cliente que se acaba de autenticar
+                $connection->send(json_encode([
+                    'tipo' => 'notificacion',
+                    'data' => $notif
+                ]));
+            }
+            
+            if (count($notificaciones) > 0) {
+                echo "Enviadas " . count($notificaciones) . " notificación(es) pendiente(s) a usuario {$usuario_id}\n";
+            }
+        } catch (Exception $e) {
+            echo "Error al obtener notificaciones pendientes: {$e->getMessage()}\n";
+        }
+    }
+    
+    /**
      * Verificar nuevas notificaciones en la BD y enviarlas
      * Se llama periódicamente desde el loop de Ratchet
      */
