@@ -39,3 +39,4 @@ sessions/
 .env.local
 .env.*.local
 
+vendor/

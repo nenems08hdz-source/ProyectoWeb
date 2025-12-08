@@ -3,7 +3,8 @@
  * Principal.php
  * Endpoint para obtener datos del dashboard del estudiante
  */
-session_start();
+require_once __DIR__ . '/../../config/session_helper.php';
+iniciarSesionSegura('estudiante');
 require_once __DIR__ . '/../../config/database.php';
 
 header('Content-Type: application/json; charset=utf-8');

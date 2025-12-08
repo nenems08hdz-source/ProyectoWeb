@@ -3,7 +3,8 @@
  * MarcarNotificacionLeida.php
  * Endpoint para marcar una notificación como leída
  */
-session_start();
+require_once __DIR__ . '/../../config/session_helper.php';
+iniciarSesionSegura('asesor');
 require_once __DIR__ . '/../../config/database.php';
 
 header('Content-Type: application/json; charset=utf-8');

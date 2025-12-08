@@ -1,5 +1,4 @@
 <?php
-session_start();
 require_once __DIR__ . '/../../config/database.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -29,6 +28,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Validar credenciales
     if ($usuario && password_verify($contrasena, $usuario["CONTRASENA"])) {
+        
+        // IMPORTANTE: Cerrar cualquier sesión previa
+        if (session_status() === PHP_SESSION_ACTIVE) {
+            session_write_close();
+        }
+        
+        // Determinar el contexto según el rol ANTES de iniciar sesión
+        $contexto = ($usuario["Rol"] === "Asesor") ? 'asesor' : 'estudiante';
+        
+        // Iniciar sesión con el contexto correcto
+        require_once __DIR__ . '/../../config/session_helper.php';
+        iniciarSesionSegura($contexto);
 
         // Crear variables de sesión
         $_SESSION["usuario_id"] = $usuario["CVE_USUARIOS"];

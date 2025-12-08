@@ -3,7 +3,8 @@ ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
-session_start();
+require_once __DIR__ . '/../../config/session_helper.php';
+iniciarSesionSegura('estudiante');
 require_once __DIR__ . '/../../config/database.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -182,6 +183,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $tituloNotificacion,
                 $mensajeNotificacion
             ]);
+            
+            // La notificación se enviará automáticamente vía WebSocket
+            // El servidor WebSocket consulta la BD cada 2 segundos
         }
 
         // Redirigir a la vista

@@ -1,5 +1,6 @@
 <?php
-session_start();
+require_once __DIR__ . '/../../config/session_helper.php';
+iniciarSesionSegura('estudiante');
 
 // Verificar si el usuario tiene sesión activa
 if (!isset($_SESSION["usuario_id"])) {

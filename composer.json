@@ -1,0 +1,13 @@
+{
+    "name": "proyecto-web/notificaciones",
+    "description": "Sistema de notificaciones en tiempo real con WebSockets",
+    "require": {
+        "php": ">=7.4",
+        "cboden/ratchet": "^0.4.4"
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\": "src/"
+        }
+    }
+}
