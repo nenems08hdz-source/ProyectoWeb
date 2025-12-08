@@ -27,7 +27,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $sector          = $_POST['sector'] ?? null;
     $direccion       = $_POST['direccion'] ?? null;
     $municipio_emp   = $_POST['municipio'] ?? null;
-    $colonia_emp     = $_POST['colonia'] ?? null;
+    // Convertir cadena vacía a NULL para campos numéricos
+    $colonia_emp     = (!empty($_POST['colonia']) && $_POST['colonia'] !== '') ? (int)$_POST['colonia'] : null;
     $email_empresa   = $_POST['email-empresa'] ?? null;
     $asesor_empresa  = $_POST['nombre-asesor'] ?? null;
     $telefono_asesor = $_POST['numero'] ?? null;

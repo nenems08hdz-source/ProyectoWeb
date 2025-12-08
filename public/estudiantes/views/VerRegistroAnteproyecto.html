@@ -56,17 +56,17 @@
     <div class="two-column">
       <!-- Ahora los datos que estaban a la derecha van a la izquierda -->
       <div class="column-left">
-        <p><strong>Nombre completo:</strong> Pablo Lopez Chable</p>
-        <p><strong>División académica:</strong> Tecnologías de la Información y Comunicación</p>
-        <p><strong>Correo electrónico:</strong> PabloLopezChable@gmail.com</p>
-        <p><strong>Número telefónico:</strong> 9934743567</p>
+        <p><strong>Nombre completo:</strong> <span id="nombre-completo">Cargando...</span></p>
+        <p><strong>División académica:</strong> <span id="division-academica">Cargando...</span></p>
+        <p><strong>Correo electrónico:</strong> <span id="correo-estudiante">Cargando...</span></p>
+        <p><strong>Número telefónico:</strong> <span id="telefono-estudiante">Cargando...</span></p>
       </div>
       <!-- Y los que estaban a la izquierda van a la derecha -->
       <div class="column-right">
-        <p><strong>Matrícula:</strong> 422410815</p>
-        <p><strong>Grupo:</strong> B</p>
-        <p><strong>Carrera:</strong> TSU en Tecnologías de la Información Área Desarrollo de Software Multiplataforma</p>
-        <p><strong>Fecha registro:</strong> 07-09-2025</p>
+        <p><strong>Matrícula:</strong> <span id="matricula">Cargando...</span></p>
+        <p><strong>Grupo:</strong> <span id="grupo">Cargando...</span></p>
+        <p><strong>Carrera:</strong> <span id="carrera">Cargando...</span></p>
+        <p><strong>Fecha registro:</strong> <span id="fecha-registro">Cargando...</span></p>
       </div>
     </div>
   </div>
@@ -77,14 +77,14 @@
     <div class="two-column">
       <!-- Invertimos igual -->
       <div class="column-left">
-        <p><strong>Nombre de la empresa:</strong> Logística & Eventos Nexus</p>
-        <p><strong>Dirección de la empresa:</strong> Calle 18 de Marzo #245, Col. Centro, Villahermosa, Tabasco, C.P. 86000</p>
-        <p><strong>Correo electrónico:</strong> Empresa01@gmail.com</p>
+        <p><strong>Nombre de la empresa:</strong> <span id="nombre-empresa">Cargando...</span></p>
+        <p><strong>Dirección de la empresa:</strong> <span id="direccion-empresa">Cargando...</span></p>
+        <p><strong>Correo electrónico:</strong> <span id="correo-empresa">Cargando...</span></p>
       </div>
       <div class="column-right">
-        <p><strong>Nombre del asesor empresarial:</strong> Ing. Víctor Hugo Ramírez Torres</p>
-        <p><strong>Número:</strong> 9923456768</p>
-        <p><strong>Área que desempeña:</strong> Desarrollo organizacional</p>
+        <p><strong>Nombre del asesor empresarial:</strong> <span id="nombre-asesor-empresa">Cargando...</span></p>
+        <p><strong>Número:</strong> <span id="telefono-asesor-empresa">Cargando...</span></p>
+        <p><strong>Área que desempeña:</strong> <span id="area-asesor-empresa">Cargando...</span></p>
       </div>
     </div>
   </div>
@@ -92,11 +92,11 @@
   <!-- Anteproyecto -->
   <div class="card">
     <h3>Anteproyecto</h3>
-    <p><strong>Título del proyecto:</strong> Sistema Web para la Coordinación de Eventos Institucionales y Registro de Participantes</p>
-    <p><strong>Objetivo general:</strong> Desarrollar un sistema web que permita gestionar eventos institucionales...</p>
-    <p><strong>Justificación:</strong> La gestión de eventos institucionales implica procesos que generan retrasos...</p>
-    <p><strong>Actividades propuestas:</strong> Registro digital de asistentes, asignación de recursos, control de proveedores, generación de reportes.</p>
-    <p><strong>Metodología:</strong> Aplicación de herramientas digitales adaptadas a las necesidades corporativas.</p>
+    <p><strong>Título del proyecto:</strong> <span id="titulo-proyecto">Cargando...</span></p>
+    <p><strong>Objetivo general:</strong> <span id="objetivo-general">Cargando...</span></p>
+    <p><strong>Justificación:</strong> <span id="justificacion">Cargando...</span></p>
+    <p><strong>Actividades propuestas:</strong> <span id="actividades-propuestas">Cargando...</span></p>
+    <p><strong>Metodología:</strong> <span id="metodologia">Cargando...</span></p>
   </div>
 </section>
 
@@ -110,6 +110,61 @@
       </div>
     </main>
   </div>
+
+  <script>
+    // Obtener el ID del anteproyecto desde la URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const anteproyectoId = urlParams.get('id');
+
+    if (!anteproyectoId) {
+      console.error('No se proporcionó ID de anteproyecto');
+      document.body.innerHTML = '<div style="padding: 20px; text-align: center;"><h2>Error: No se proporcionó ID de anteproyecto</h2></div>';
+    } else {
+      // Cargar los datos del anteproyecto
+      fetch(`/api/estudiantes/ObtenerAnteproyecto.php?id=${anteproyectoId}`)
+        .then(response => response.json())
+        .then(result => {
+          if (result.error) {
+            console.error('Error:', result.error);
+            document.body.innerHTML = `<div style="padding: 20px; text-align: center;"><h2>Error: ${result.error}</h2></div>`;
+            return;
+          }
+
+          if (result.success && result.data) {
+            const data = result.data;
+
+            // Llenar datos del estudiante
+            document.getElementById('nombre-completo').textContent = data.NOMBRE_COMPLETO || 'N/A';
+            document.getElementById('division-academica').textContent = data.nombre_division || 'N/A';
+            document.getElementById('correo-estudiante').textContent = data.correo_estudiante || 'N/A';
+            document.getElementById('telefono-estudiante').textContent = data.telefono_estudiante || 'N/A';
+            document.getElementById('matricula').textContent = data.MATRICULA || 'N/A';
+            document.getElementById('grupo').textContent = data.GRUPO || 'N/A';
+            document.getElementById('carrera').textContent = data.nombre_carrera || 'N/A';
+            document.getElementById('fecha-registro').textContent = data.FECHA_REGISTRO_FORMATEADA || 'N/A';
+
+            // Llenar datos de la empresa
+            document.getElementById('nombre-empresa').textContent = data.nombre_empresa || 'N/A';
+            document.getElementById('direccion-empresa').textContent = data.direccion_completa || data.direccion_empresa || 'N/A';
+            document.getElementById('correo-empresa').textContent = data.correo_empresa || 'N/A';
+            document.getElementById('nombre-asesor-empresa').textContent = data.nombre_asesor_empresa || 'N/A';
+            document.getElementById('telefono-asesor-empresa').textContent = data.telefono_asesor_empresa || 'N/A';
+            document.getElementById('area-asesor-empresa').textContent = data.area_asesor_empresa || 'N/A';
+
+            // Llenar datos del anteproyecto
+            document.getElementById('titulo-proyecto').textContent = data.TITULO || 'N/A';
+            document.getElementById('objetivo-general').textContent = data.OBJETIVO_GENERAL || 'N/A';
+            document.getElementById('justificacion').textContent = data.JUSTIFICACION || 'N/A';
+            document.getElementById('actividades-propuestas').textContent = data.ACTIVIDADES_PROPUESTAS || 'N/A';
+            document.getElementById('metodologia').textContent = data.METODOLOGIA || 'N/A';
+          }
+        })
+        .catch(error => {
+          console.error('Error al cargar datos:', error);
+          document.body.innerHTML = `<div style="padding: 20px; text-align: center;"><h2>Error al cargar los datos del anteproyecto</h2><p>${error.message}</p></div>`;
+        });
+    }
+  </script>
 </body>
 </html>
 
