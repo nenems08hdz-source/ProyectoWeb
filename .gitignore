@@ -1,0 +1,41 @@
+# Archivos de configuración con credenciales
+# Estos archivos contienen información sensible y NO deben subirse al repositorio
+config/database.php
+
+# Archivos de base de datos con datos reales
+database/proyectoaweb.sql
+
+# Archivos del sistema operativo
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+desktop.ini
+
+# Archivos de editores
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.project
+.classpath
+.settings/
+
+# Archivos temporales
+*.log
+*.tmp
+*.temp
+*.cache
+
+# Archivos de sesión PHP (si se guardan en el proyecto)
+sessions/
+
+# Variables de entorno
+.env
+.env.local
+.env.*.local
+

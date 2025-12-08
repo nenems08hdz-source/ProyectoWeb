@@ -1,0 +1,187 @@
+ :root {
+            --color-dark: #1e2430; 
+            --color-background: #f4f7fa; 
+            --color-sidebar-bg: #1e2430; 
+            --color-sidebar-active: #4a5465; 
+            --color-text-light: #ffffff;
+            --color-text-dark: #333333;
+            --color-card-light: #ffffff;
+            --color-button-dark: #3f51b5; 
+            --color-border: #e0e0e0;
+            --color-divider: #e5e7eb; 
+
+            /* Colores de Chart.js y Leyenda */
+            --color-approved: #0f172a; 
+            --color-revision: #6366f1; 
+        }
+
+        /* Configuración de fuente Inter */
+       @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--color-background);
+              margin: 0;
+        }
+
+        /* Contenedor principal del dashboard */
+        .dashboard-container {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* Sidebar: Estilo de fondo y navegación */
+        .sidebar {
+            width: 250px;
+            background-color: var(--color-sidebar-bg);
+            color: var(--color-text-light);
+            padding: 20px 0;
+            flex-shrink: 0;
+        }
+        .logo {
+            padding: 0 20px 30px;
+            font-size: 1.5em;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+        }
+        .logo i {
+            font-size: 2em;
+            margin-right: 10px;
+        }
+
+        /* Estilos de los ítems de navegación */
+        .nav-item {
+            display: flex;
+            align-items: center;
+            padding: 15px 20px;
+            color: #b0b8c4; 
+            text-decoration: none;
+            transition: background-color 0.2s;
+            gap: 15px; 
+        }
+         .nav-item:hover, .nav-item.active {
+         background-color: var(--color-sidebar-active);
+          color: var(--color-text-light);
+          font-weight: 500;
+         }
+         
+       .nav-item.active {
+    border-left: 5px solid #ffffff;
+    padding-left: 15px;
+}
+
+
+        /* Estilos de las Tarjetas (Cards) */
+       .card {
+    background-color: var(--color-card-light);
+    border-radius: 1rem; 
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); 
+    padding: 1.5rem; 
+    border: 1px solid var(--color-border); 
+    /* Propiedades clave para el layout 2x2 */
+    height: 100%; 
+    display: flex;
+    flex-direction: column;
+}
+.card-title {
+    color: var(--color-text-dark);
+    font-weight: 600; 
+    font-size: 1.25rem; 
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--color-divider);
+}
+
+.card-content-grow {
+    flex-grow: 1;
+}
+
+/* Estilos de elementos internos */
+.list-item {
+    display: flex;
+    align-items: center;
+    color: var(--color-text-dark); 
+    padding: 0.75rem 0;
+    border-bottom: 1px solid var(--color-divider);
+    font-size: 0.95rem;
+}
+.list-item:last-child, .comment-item:last-child {
+    border-bottom: none;
+}
+.comment-item {
+    padding: 1rem 0;
+    border-bottom: 1px solid var(--color-divider);
+}
+.notification-item {
+    padding: 0.75rem 0;
+    border-bottom: 1px solid var(--color-divider);
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem; 
+}
+.notification-item:last-child {
+    border-bottom: none;
+}
+
+
+/* ESTILOS ESPECÍFICOS PARA EL GRÁFICO (SOLUCIÓN DEFINITIVA DE VISUALIZACIÓN) */
+#chart-container {
+    /* Mantenemos el tamaño fijo para el contenedor del canvas, esencial para Chart.js */
+    width: 150px; 
+    height: 150px;
+    max-width: 150px;
+    max-height: 150px;
+    flex-shrink: 0; 
+    position: relative; 
+}
+#anteproyectoDonaChart {
+    /* Aseguramos que el canvas ocupe todo el espacio de su contenedor */
+    width: 100% !important;
+    height: 100% !important;
+    /* FIX CRÍTICO: Forzar el display block para que Chart.js lo reconozca y pinte */
+    display: block !important; 
+}
+
+/* Clases de colores para la leyenda */
+.bg-approved-color {
+    background-color: var(--color-approved);
+}
+.bg-revision-color {
+    background-color: var(--color-revision);
+}
+
+/* Animaciones para notificaciones */
+@keyframes slide-in {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+.animate-slide-in {
+    animation: slide-in 0.3s ease-out;
+}
+
+/* Estilos para notificaciones no leídas */
+.notification-item.bg-blue-50 {
+    background-color: #eff6ff;
+    padding-left: 0.75rem;
+    margin-left: -0.75rem;
+    border-radius: 0.5rem;
+}
+
+/* Estilos Responsivos */
+@media (max-width: 1023px) { /* lg:breakpoint */
+    .sidebar {
+        /* Ocultar sidebar en dispositivos pequeños */
+        display: none; 
+    }
+    .dashboard-container {
+        flex-direction: column;
+    }
+}

@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calendario- GEUT</title>
+    <!-- Carga Tailwind CSS para la estética y los modales -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Carga Font Awesome para los iconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+     <link rel="stylesheet" href="../styles/Calendario.css">
+    </head>
+    <body>
+        <div class="dashboard-container">
+    <aside class="sidebar">
+        <div class="logo">
+            <i class="fas fa-graduation-cap"></i>
+            <span>GEUT</span>
+        </div>
+        <nav class="nav-menu">
+            <a href="PantallaInicio.html" class="nav-item">
+                <i class="fas fa-home"></i>
+                <span>Inicio</span>
+            </a>
+            <a href="Anteproyecto.html" class="nav-item">
+                <i class="fas fa-file-alt"></i>
+                <span>Anteproyecto</span>
+            </a>
+            <a href="Alumnos.html" class="nav-item ">
+                <i class="fa-solid fa-user-group"></i>
+                <span>Alumnos</span>
+            </a>
+            <a href="Comentario.html" class="nav-item">
+                <i class="fas fa-comments"></i>
+                <span>Comentarios</span>
+            </a>
+            <a href="Perfil.html" class="nav-item">
+                <i class="fas fa-user-circle"></i>
+                <span>Perfil</span>
+            </a>
+            <a href="Calendario.html" class="nav-item active">
+                <i class="fas fa-calendar-alt"></i>
+                <span>Calendario</span>
+            </a>
+        </nav>
+    </aside>
+
+        <main class="main-content">
+            
+            <div class="card calendar-card">
+                <div class="calendar-header-title">
+                    <input type="text" value="Calendario" readonly class="input-title-calendar">
+                </div>
+            
+                <div class="calendar-content">
+                    <div class="calendar-main">
+                        <div class="month-navigation">
+                            <button id="prev-month-btn" class="nav-btn"><i class="fas fa-chevron-left"></i></button>
+                            <div id="month-banner" class="calendar-month-banner">
+                            </div>
+                            <button id="next-month-btn" class="nav-btn"><i class="fas fa-chevron-right"></i></button>
+                        </div>
+                        
+                        <!-- Contenedor de la cuadrícula de días -->
+                        <div class="calendar-grid">
+                            <!-- Días de la semana (Encabezados) - 7 columnas -->
+                            <div class="day-name">DOM</div>
+                            <div class="day-name">LUN</div>
+                            <div class="day-name">MAR</div>
+                            <div class="day-name">MIÉ</div>
+                            <div class="day-name">JUE</div>
+                            <div class="day-name">VIE</div>
+                            <div class="day-name">SÁB</div>
+                            <!-- Los días del mes se generarán aquí por JS -->
+                        </div>
+                    </div>
+
+                    <!-- Sección de Actividades (Columna Derecha) -->
+                    <div class="calendar-sidebar">
+                        
+                        <div id="calendar-year" class="calendar-year"></div>
+
+                        <!-- Box de actividades pendientes -->
+                        <div class="activities-box">
+                            <p>Actividades pendientes (<span id="selected-day-text">Hoy</span>)</p>
+                            <span id="activity-count" class="activity-count">0</span>
+                        </div>
+
+                        <!-- Botón Añadir -->
+                        <div class="add-activity-box">
+                            <button id="add-activity-btn"><i class="fas fa-plus"></i> Añadir</button>
+                        </div>
+                        
+                        <!-- Lista de actividades -->
+                        <div id="activity-list" class="activity-list-container">
+                            <p id="no-activities-msg" class="empty-message">No hay actividades para esta fecha.</p>
+                            <!-- Las tarjetas de actividades se generarán aquí por JS -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- MODAL para Añadir Actividad -->
+    <div id="add-activity-modal" class="modal-overlay">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Añadir Nueva Actividad</h3>
+                <button id="close-modal-btn" class="close-btn">&times;</button>
+            </div>
+            <form id="add-activity-form">
+                <label for="activity-name">Nombre de la Actividad</label>
+                <input type="text" id="activity-name" required>
+
+                <label for="activity-description">Descripción</label>
+                <textarea id="activity-description" rows="3"></textarea>
+                
+                <label for="activity-date">Fecha</label>
+                <input type="date" id="activity-date" required>
+                
+                <label for="activity-time">Hora</label>
+                 <input type="time" id="activity-time" name="Hora" required>
+
+                <label for="activity-location">Lugar</label>
+                <input type="text" id="activity-location" name="Lugar" placeholder="Ej: Sala 101 o Google Meet" required>
+                
+                <div class="modal-actions">
+                    <button type="button" id="cancel-add-btn" class="cancel-btn">Cancelar</button>
+                    <button type="submit" class="save-btn">Guardar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Enlace al archivo de JavaScript -->
+    <script src="../scripts/Calendario.js"></script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+

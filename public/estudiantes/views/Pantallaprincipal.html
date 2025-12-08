@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GEUT - Dashboard</title>
+    
+    <link rel="stylesheet" href="../styles/stylePrincipal.css">
+    
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+
+</head>
+<body>
+    <div class="dashboard-container">
+        <aside class="sidebar">
+            <div class="logo">
+                <i class="fas fa-graduation-cap"></i>
+                <span>GEUT</span>
+            </div>
+            <nav class="nav-menu">
+                <a href="Pantallaprincipal.html" class="nav-item active">
+                    <i class="fas fa-home"></i>
+                    Inicio
+                </a>
+                <a href="Anteproyecto.html" class="nav-item">
+                    <i class="fas fa-file-alt"></i>
+                    Anteproyecto
+                </a>
+                 <a href="Estadia.html" class="nav-item">
+                    <i class="fas fa-briefcase"></i>
+                    Mi estadía
+                </a>
+                <a href="Comentarios.html" class="nav-item">
+                    <i class="fas fa-comments"></i>
+                    Comentarios
+                </a>
+                <a href="Perfil.html" class="nav-item">
+                    <i class="fas fa-user-circle"></i>
+                    Perfil
+                </a>
+                <a href="Calendario.html" class="nav-item">
+                    <i class="fas fa-calendar-alt"></i>
+                    Calendario
+                </a>
+            </nav>
+        </aside>
+
+        <main class="main-content">
+            <header class="page-header">
+                <h2>Bienvenido, Alumno</h2>
+            </header>
+
+            <div class="content-grid">
+                
+                <div class="card card-observaciones">
+                    <h3>Observaciones recientes</h3>
+                    <div id="observations-container" class="slots-wrapper">
+                     </div>
+                   <button class="btn-primary btn-ver-mas" id="btn-ver-mas-observaciones">Ver más</button>
+                </div>
+
+                <div class="card card-propuesta">
+                    <p>Aún no has agregado una propuesta</p>
+                    <button class="btn-secondary" id="btn-add-proposal">
+                        <i class="fas fa-plus-circle"></i>
+                        Agregar propuesta
+                    </button>
+                </div>
+
+                <div class="asesores-container">
+                    <h3>Asesores</h3>
+                    <div class="advisor-item">
+                        <i class="fas fa-user-circle"></i>
+                        Asesor académico
+                    </div>
+                    <div class="advisor-item">
+                        <i class="fas fa-user-circle"></i>
+                        Asesor empresarial
+                    </div>
+                </div>
+
+                <div class="counters-container">
+                    <div class="card card-counter">
+                        <h3>Comentarios</h3>
+                        <p class="count-number" id="count-comments">0</p>
+                    </div>
+                    <div class="card card-counter">
+                        <h3>Notificaciones</h3>
+                        <p class="count-number" id="count-notifications">2</p>
+                    </div>
+                </div>
+
+                <div class="card card-activities">
+                    <h3>Actividades recientes</h3>
+                    <div class="activities-slots">
+                       <div class="activities-slots" id="recent-activities-container"></div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    <script src="../scripts/Pantallaprincipal.js"></script> 
+<script> 
+    fetch ("/api/estudiantes/Principal.php", {
+        method: "post",
+        headers: {"content-type": "application/x-www-form-urlencoded"},
+        body: "id=" + id
+    })
+
+    .then(res => res.text())
+    .then(res => {
+        alert(resp);
+        location.reload();
+    })
+</script>
+      
+</body>
+</html>

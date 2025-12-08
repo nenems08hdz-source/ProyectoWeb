@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestión de Anteproyectos - GEUT</title>
+    <!-- Carga Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Carga Font Awesome para los iconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- Enlace al archivo de estilos externo -->
+    <link rel="stylesheet" href="../styles/Anteproyecto.css">
+</head>
+<body>
+    <!-- Contenedor Principal (Flexbox para sidebar y contenido) -->
+    <div class="dashboard-container">
+        
+        <!-- BARRA LATERAL (SIDEBAR) -->
+        <aside class="sidebar">
+            <div class="logo">
+                <i class="fas fa-graduation-cap"></i>
+                <span>GEUT</span>
+            </div>
+            <nav class="nav-menu">
+                <a href="PantallaInicio.html" class="nav-item">
+                    <i class="fas fa-home"></i>
+                    <span>Inicio</span>
+                </a>
+                <a href="Anteproyecto.html" class="nav-item active">
+                    <i class="fas fa-file-alt"></i>
+                    <span>Anteproyecto</span>
+                </a>
+                <a href="Alumnos.html" class="nav-item">
+                    <i class="fa-solid fa-user-group"></i>
+                    <span>Alumnos</span>
+                </a>
+                <a href="Comentario.html" class="nav-item">
+                    <i class="fas fa-comments"></i>
+                    <span>Comentarios</span>
+                </a>
+                <a href="Perfil.html" class="nav-item">
+                    <i class="fas fa-user-circle"></i>
+                    <span>Perfil</span>
+                </a>
+                <a href="Calendario.html" class="nav-item">
+                    <i class="fas fa-calendar-alt"></i>
+                    <span>Calendario</span>
+                </a>
+            </nav>
+        </aside>
+
+        <!-- Contenido Principal -->
+        <div class="main-content">
+        <p id="user-info" class="text-xs text-gray-500 mb-4"></p>
+            
+            <!-- VISTA DE LISTA (Mostrada por defecto) -->
+            <div id="list-container">
+                <h1 class="text-3xl font-bold text-[#222938] mb-6">Anteproyectos de los alumnos</h1>
+
+                <!-- Filtros -->
+                 <div class="flex space-x-4 mb-8">
+                    <button class="filter-button active" data-filter="revision">En revisión</button>
+                    <button class="filter-button" data-filter="aprobado">Aprobados</button>
+                    <button class="filter-button" data-filter="rechazado">Rechazados</button>
+                </div>
+
+                <!-- Tabla/Lista de Anteproyectos -->
+               <div class="project-list-container">
+                    <div class="list-header compact">
+                        <span class="header-item matricula-h">Matrícula</span>
+                        <span class="header-item nombre-h">Nombre del alumno</span>
+                        <span class="header-item anteproyecto-h">Anteproyecto</span>
+                        <span class="header-item acciones-h" style="text-align: right;">Acciones</span>
+                    </div>
+                    <div id="anteproyectos-list-body">
+                        <!-- Las filas se insertarán aquí por JavaScript -->
+                    </div> 
+               </div>
+            </div>
+            
+            <!-- VISTA DE DETALLE (Oculta por defecto) -->
+            <div id="detail-container" style="display: none;" class="p-6">
+                <div class="flex justify-between items-center mb-6">
+                    <button id="back-to-list" class="bg-gray-200 text-gray-700 py-2 px-4 rounded-lg font-semibold hover:bg-gray-300 transition duration-150">
+                        <i class="fas fa-arrow-left mr-2"></i> Volver a la Lista
+                    </button>
+                </div>
+                
+                <div class="grid grid-cols-1 lg:grid-cols-4 gap-6">
+                    
+                    <!-- Columna Principal de Detalles (3/4) -->
+                     <div class="lg:col-span-3">
+                        <div class="card-container">
+                            <h2 id="detail-project-title-header" class="text-2xl font-bold mb-4 text-gray-800 border-b pb-2"></h2>
+                        <!-- SECCIÓN 1: DATOS DEL ESTUDIANTE -->
+                        <div class="mb-8">
+                            <h3 class="data-section-title">Datos del estudiante</h3>
+                            <dl class="data-grid">
+                                <div><dt>Nombre completo:</dt><dd id="detail-student-name"></dd></div>
+                                <div><dt>Matrícula:</dt><dd id="detail-student-matricula"></dd></div>
+                                <div><dt>Grupo:</dt><dd id="detail-student-group"></dd></div>
+                            </dl>
+                            <dl class="data-grid">
+                                <div><dt>División Académica:</dt><dd id="detail-student-division"></dd></div>
+                                <div><dt>Carrera:</dt><dd id="detail-student-career"></dd></div>
+                                <div><dt>Correo electrónico:</dt><dd id="detail-student-email"></dd></div>
+                            </dl>
+                            <dl class="data-grid">
+                                <div><dt>Número telefónico:</dt><dd id="detail-student-phone"></dd></div>
+                                <div><dt>Fecha inicio:</dt><dd id="detail-start-date"></dd></div>
+                                <div><dt>Fecha fin:</dt><dd id="detail-end-date"></dd></div>
+                            </dl>
+                        </div>
+
+                        <!-- SECCIÓN 2: DATOS DE LA EMPRESA RECEPTORA -->
+                        <div class="mb-8">
+                            <h3 class="data-section-title">Datos de la empresa receptora</h3>
+                            <dl class="data-grid">
+                                <div><dt>Nombre de la empresa:</dt><dd id="detail-company-name"></dd></div>
+                                <div><dt>Nombre del asesor empresarial:</dt><dd id="detail-advisor-name"></dd></div>
+                                <div><dt>Área que desempeña:</dt><dd id="detail-advisor-area"></dd></div>
+                            </dl>
+                            <dl class="data-grid">
+                                <div><dt>Dirección de la empresa:</dt><dd id="detail-company-address"></dd></div>
+                                <div><dt>Número:</dt><dd id="detail-advisor-phone"></dd></div>
+                                <div><dt>Correo electrónico:</dt><dd id="detail-company-email"></dd></div>
+                            </dl>
+                        </div>
+                        
+                        <!-- SECCIÓN 3: DATOS DEL ANTEPROYECTO -->
+                        <div class="mb-8">
+                            <h3 class="data-section-title">Datos del anteproyecto</h3>
+                            
+                            <div class="mb-4">
+                                <dt class="font-bold text-gray-700">Título del anteproyecto:</dt>
+                                <dd id="detail-project-title-top" class="project-content"></dd>
+                            </div>
+                            
+                            <div class="mb-4">
+                                <dt class="font-bold text-gray-700">Objetivo General:</dt>
+                                <dd id="detail-general-objective" class="project-content"></dd>
+                            </div>
+                            
+                            <div class="mb-4">
+                                <dt class="font-bold text-gray-700">Justificación:</dt>
+                                <dd id="detail-justification" class="project-content"></dd>
+                            </div>
+                        </div>
+
+                        <!-- Botones de Aprobación/Acción -->
+                        <div class="flex space-x-4 pt-4 border-t border-gray-100">
+                            <button class="btn-action bg-green-600 hover:bg-green-700 text-white">
+                                <i class="fas fa-check mr-2"></i> Aprobar
+                            </button>
+                            <button class="btn-action bg-red-600 hover:bg-red-700 text-white">
+                                <i class="fas fa-times mr-2"></i> Rechazar
+                            </button>
+                        </div>
+
+                    </div>
+                    
+                    <!-- Columna de Observaciones (1/4) -->
+                     <div class="lg:col-span-1">
+                        <div class="card-container h-full">
+                            <h2 class="text-xl font-semibold text-gray-700 mb-4 border-b pb-2">Observaciones</h2>
+                            <div id="observations-list" class="mb-4 min-h-20">
+                                <!-- Las observaciones se cargarán aquí -->
+                            </div>
+                            <button class="btn-action bg-blue-600 hover:bg-blue-700 text-white w-full shadow-md mt-auto">
+                                <i class="fas fa-plus mr-2"></i> Agregar observación
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </div>        
+    <!-- Enlace al archivo de scripts externo -->
+    <script src="../scripts/Anteproyecto.js"></script>
+</body>
+</html>
